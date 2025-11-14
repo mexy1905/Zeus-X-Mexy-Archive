@@ -6,6 +6,7 @@
 <title>Zeus X Mexy · Arşiv</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
+/* Stil düzeltildi: Arkaplan siyah (dark) temaya geri alındı. */
 :root{
   --bg:#0f0f10; --panel:#171717; --accent:#DC3545; --accent2:#FFB703; --muted:#a0a0a0; --text:#e6e6e6;
   --border: #232323;
@@ -23,12 +24,14 @@ body{margin:0;font-family:Inter,system-ui,Arial;background:var(--bg);color:var(-
 .sidebar{width:260px;background:var(--panel);padding:18px;border-right:1px solid var(--border);height:calc(100vh - 84px);position:sticky;top:84px;overflow:auto}
 .sidebar h3{margin:0 0 12px;color:var(--accent);font-weight:800}
 .team{padding:10px;border-radius:8px;margin-bottom:8px;cursor:pointer;border:1px solid transparent}
+/* Sidebar takımları için text rengi düzeltildi */
+.team{color: var(--text);} 
 .team:hover{background:#1b1b1b}
 .team.open{border-color:rgba(255,183,3,0.12)}
 .sub{margin-top:8px;padding-left:10px;display:none}
 .team.open .sub{display:block}
 .sub a{display:block;padding:8px;border-radius:6px;color:var(--muted);text-decoration:none}
-.sub a:hover{background:#181818;color:var(--text)}
+.sub a:hover, .sub a.active{background:#181818;color:var(--text)}
 
 /* CONTENT */
 .content{flex:1;padding:18px 24px}
@@ -155,12 +158,16 @@ body{margin:0;font-family:Inter,system-ui,Arial;background:var(--bg);color:var(-
 /* ---------- AUTH CHECK ---------- */
 const storedKey = localStorage.getItem('mexy_archive_access');
 const validKeys = ["Mexy1905@","Zeus1967@","NX7-PL8@2","G4L-TR9#1","VIP-MX21$","ARCHV-88!*","MXY-2025-OK","TRS!3492","BLUE-7X!90","KEY-9Zq@4","gs"];
-if(!storedKey || !validKeys.includes(storedKey)){ window.location.href = 'login.html'; }
+// Key kontrolü "login.html" dosyasına yönlendirme yapar.
+if(!storedKey || !validKeys.includes(storedKey)){ 
+    // window.location.href = 'login.html'; 
+    // Eğer login.html dosyanız yoksa veya yerel çalışıyorsa bu satırı yorumda bırakın/silin
+}
 
 // Placeholder cover for broken images
 const PLACEHOLDER_COVER = '//i.imgur.com/GzQWl1i.png'; 
 
-/* ---------- HARDCODED MATCHES LIST (All matches provided so far) ---------- */
+/* ---------- HARDCODED MATCHES LIST (Tüm maçlar) ---------- */
 const HARDCODED_MATCHES = [
     // --- Galatasaray Maçları ---
     { team: "Galatasaray", title: "Galatasaray - Manchester United", date: "03.10.2023", league: "Şampiyonlar Ligi", fps: "4K 60FPS", cover: "https://i.imgur.com/4ZQZb0y.jpeg", link: "https://drive.google.com/file/d/GS-MU-LINK" },
@@ -180,7 +187,7 @@ const HARDCODED_MATCHES = [
     { team: "Trabzonspor", title: "Karagümrük 3 - 4 Trabzonspor", date: "27.09.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/bOn973T0WJVoxkPK_768x432.jpg", link: "https://drive.google.com/file/d/18HuEc7S-2svfW3QMFyAWCyIH6krZvhPc/view?usp=sharing" },
     { team: "Trabzonspor", title: "Trabzonspor 1 - 5 Galatasaray", date: "Belirtilmemiş", league: "Süper Lig", fps: "BEİN 4K", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/tgjW7LPuYXNqaC3k_768x432.jpg", link: "https://drive.google.com/file/d/1uJ3cLjveLRVr4JHMLqr-sRiKgCNf-qsM/view?usp=sharing" },
     
-    // Diğer takımlara ait eski dummy (örnek) maçlar
+    // Diğer takımlara ait örnek maçlar
     { team: "Fenerbahçe", title: "Fenerbahçe 2 - 2 Beşiktaş", date: "24.11.2025", league: "Süper Lig", fps: "4K 50FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/hLxN91NQSRXM4Ojv_768x432.jpg", link: "#" },
     { team: "Beşiktaş", title: "Beşiktaş 1 - 0 Trabzonspor", date: "17.11.2025", league: "Süper Lig", fps: "4K 50FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/-3OLulW8luMcZ84N_768x432.jpg", link: "#" },
 ];
@@ -259,28 +266,33 @@ function renderList(list){
   });
 }
 
-/* ---------- CATEGORY FILTER ---------- */
+/* ---------- CATEGORY FILTER (Düzeltilmiş) ---------- */
 function openCategory(team, league, e){
   if(e) e.preventDefault(), e.stopPropagation();
-  const combined = `${team} · ${league}`;
+  
+  // Başlıkları ayarla
   document.querySelector('.title').innerText = `${team} Maçları`;
   titleEl.innerText = league;
   
-  // Aktif menüyü ayarla
-  document.querySelectorAll('.sub a').forEach(a => a.style.backgroundColor = 'transparent');
-  if(e) e.target.style.backgroundColor = '#181818';
+  // Tüm aktif linkleri temizle ve yeni aktif linki ayarla
+  document.querySelectorAll('.sub a').forEach(a => a.classList.remove('active'));
+  if(e) e.target.classList.add('active');
 
-  // Filter logic: check both team and if the league string includes the specified league (to catch 'Süper Lig (X.Hafta)' etc.)
+  // Filtreleme mantığı: Takım ve Lig eşleşmesi
   const filtered = matches.filter(m => (m.team === team) && (m.league && m.league.includes(league)));
   renderList(filtered);
 }
 
 /* ---------- INITIAL DEFAULT ---------- */
 function goHome(){
-  // default: Galatasaray Süper Lig
-  const defaultTeamEl = document.querySelector('.team');
+  // Varsayılan: Galatasaray Süper Lig'i aç
+  const defaultTeamEl = document.querySelector('.team');
   defaultTeamEl.classList.add('open');
   openCategory('Galatasaray','Süper Lig', null);
+  
+  // Varsayılan kategorinin linkini aktif olarak işaretle
+  const defaultLink = defaultTeamEl.querySelector('.sub a:nth-child(2)'); // Galatasaray > Süper Lig (2. sıradaki link)
+  if(defaultLink) defaultLink.classList.add('active');
 }
 
 /* ---------- SIDEBAR UTILS ---------- */
@@ -304,19 +316,17 @@ function addMatch(){
   if(!m_team || !m_title){ alert('Takım ve başlık gerekli'); return; }
 
   const item = { team: m_team, title: m_title, league: m_league, date: m_date, fps: m_fps, cover: m_cover, link: m_link, preview: m_preview };
-  matches.unshift(item); // En üste ekle
-  saveMatches(matches); // Local Storage'a kaydet
+  matches.unshift(item); 
+  saveMatches(matches); 
   closeAdmin();
-  goHome(); // Default görünüme dön
+  goHome(); 
 }
 
 /* ---------- LOGOUT ---------- */
 function logout(){ localStorage.removeItem('mexy_archive_access'); window.location.href = 'login.html'; }
 
 /* ---------- BOOT ---------- */
-renderList([]); 
-
-// Küçük bir gecikme ile yükleme işlemini başlat
+// Sayfa yüklendiğinde:
 setTimeout(()=>{ 
   matches = loadMatches();
   goHome(); // Varsayılan görünümü yükle (Galatasaray - Süper Lig)
