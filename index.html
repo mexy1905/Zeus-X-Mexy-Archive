@@ -6,6 +6,7 @@
 <title>Zeus X Mexy Archive</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
+/* CSS BAŞLANGICI */
 :root {
     --bg-color: #121212;
     --panel-color: #1E1E1E;
@@ -207,7 +208,7 @@ body {
     position:absolute; right:15px;
 }
 .sidebar li.has-sub.active::after { content:'▾'; }
-
+/* CSS BİTİŞİ */
 </style>
 </head>
 <body>
@@ -228,6 +229,7 @@ body {
     <div class="sidebar" id="sidebar">
         <h2>ZEUS X MEXY</h2>
         <ul>
+            <li class="team-header has-sub" data-team="Tüm Maçlar" onclick="filterMatches('Tüm Maçlar', 'Tümü')">Tüm Maçlar</li>
                         <li class="team-header has-sub" data-team="Galatasaray" onclick="toggleSub(this)">Galatasaray
                 <ul class="submenu">
                     <li data-league="Şampiyonlar Ligi">Şampiyonlar Ligi</li>
@@ -305,7 +307,7 @@ const DEFAULT_FPS = "25FPS";
 const PREMIUM_QUALITY = "4K";
 const PREMIUM_FPS = "50FPS";
 
-// --- MAÇ LİSTESİ (Tüm maçlar) ALT ALTA YAZILMIŞ HALİ ---
+// --- MAÇ LİSTESİ (Tüm maçlar) ---
 const ALL_MATCHES = [
     
     // =======================================================
@@ -558,126 +560,61 @@ const ALL_MATCHES = [
         cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/nYPi6k_cWpTpXGiF_768x432.jpg"
     },
     
-    // ÖNCEKİ MAÇLAR (Varsayılan değerlerle güncellenmiştir)
-    { 
-        team_1: "Galatasaray", 
-        team_2: "Trabzonspor", 
-        title: "Galatasaray vs Trabzonspor", 
-        date:"10.11.2025", 
-        league:"Süper Lig", 
-        quality:PREMIUM_QUALITY, // Önceki 4K'ydı, varsayılanı kullanıyorum.
-        fps:PREMIUM_FPS, 
-        link:"https://drive.google.com/file/d/1HiRZRR0oDbkc-pcoj79HAzVN33fgjcNC/view?usp=sharing", 
-        cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/nYPi6k_cWpTpXGiF_768x432.jpg"
-    },
+    // YER TUTUCU MAÇLAR (Gerektiğinde silinebilir)
     { 
         team_1: "Galatasaray", 
         team_2: "Manchester United", 
-        title: "Galatasaray vs Manchester United", 
+        title: "Galatasaray vs Manchester United (Örnek)", 
         date:"29.11.2023", 
         league:"Şampiyonlar Ligi", 
-        quality:PREMIUM_QUALITY, // Varsayım
-        fps:PREMIUM_FPS, // Varsayım
+        quality:PREMIUM_QUALITY, 
+        fps:PREMIUM_FPS, 
         link:"#", 
         cover: "https://i.imgur.com/4ZQZb0y.jpeg"
     },
     { 
-        team_1: "Galatasaray", 
-        team_2: "Fenerbahçe", 
-        title: "Galatasaray vs Fenerbahçe", 
-        date:"01.06.2025", 
-        league:"Süper Lig", 
-        quality:PREMIUM_QUALITY, // Varsayım
-        fps:PREMIUM_FPS, // Varsayım
-        link:"#", 
-        cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/tgjW7LPuYXNqaC3k_768x432.jpg"
-    },
-
-    // Fenerbahçe Maçları
-    { 
         team_1: "Fenerbahçe", 
         team_2: "Beşiktaş", 
-        title: "Fenerbahçe vs Beşiktaş", 
+        title: "Fenerbahçe vs Beşiktaş (Örnek)", 
         date:"15.11.2025", 
         league:"Süper Lig", 
-        quality:PREMIUM_QUALITY, // Varsayım
-        fps:PREMIUM_FPS, // Varsayım
+        quality:PREMIUM_QUALITY, 
+        fps:PREMIUM_FPS, 
         link:"#", 
         cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/hLxN91NQSRXM4Ojv_768x432.jpg"
     },
     { 
         team_1: "Olimpiakos", 
         team_2: "Fenerbahçe", 
-        title: "Olimpiakos vs Fenerbahçe", 
+        title: "Olimpiakos vs Fenerbahçe (Örnek)", 
         date:"11.04.2024", 
         league:"Avrupa Ligi", 
-        quality:DEFAULT_QUALITY, // Varsayım
-        fps:DEFAULT_FPS, // Varsayım
+        quality:DEFAULT_QUALITY, 
+        fps:DEFAULT_FPS, 
         link:"#", 
         cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/OM1L4VsIUzIjP4tG_768x432.jpg"
     },
-
-    // Beşiktaş Maçları
     { 
         team_1: "Beşiktaş", 
         team_2: "Galatasaray", 
-        title: "Beşiktaş vs Galatasaray", 
+        title: "Beşiktaş vs Galatasaray (Örnek)", 
         date:"20.11.2025", 
         league:"Süper Lig", 
-        quality:DEFAULT_QUALITY, // Varsayım
-        fps:PREMIUM_FPS, // Varsayım
+        quality:DEFAULT_QUALITY, 
+        fps:PREMIUM_FPS, 
         link:"#", 
         cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/-3OLulW8luMcZ84N_768x432.jpg"
     },
     { 
-        team_1: "Beşiktaş", 
-        team_2: "Trabzonspor", 
-        title: "Beşiktaş vs Trabzonspor", 
-        date:"05.11.2025", 
-        league:"Türkiye Kupası", 
-        quality:PREMIUM_QUALITY, // Varsayım
-        fps:DEFAULT_FPS, // Varsayım
-        link:"#", 
-        cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/CjzD_10A0Udps5Sl_768x432.jpg"
-    },
-    
-    // Trabzonspor Maçları (eski)
-    { 
         team_1: "Trabzonspor", 
         team_2: "Samsunspor", 
-        title: "Trabzonspor vs Samsunspor", 
+        title: "Trabzonspor vs Samsunspor (Örnek)", 
         date:"31.08.2025", 
         league:"Süper Lig", 
-        quality:DEFAULT_QUALITY, // Varsayım
-        fps:PREMIUM_FPS, // Varsayım
+        quality:DEFAULT_QUALITY, 
+        fps:PREMIUM_FPS, 
         link:"#", 
         cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/ZPMkSyRKy1KzaFYM_768x432.jpg"
-    },
-    
-    // Samsunspor Maçları
-    { 
-        team_1: "Samsunspor", 
-        team_2: "Antalyaspor", 
-        title: "Samsunspor vs Antalyaspor", 
-        date:"01.10.2025", 
-        league:"Süper Lig", 
-        quality:DEFAULT_QUALITY, 
-        fps:DEFAULT_FPS, 
-        link:"#", 
-        cover: PLACEHOLDER_COVER
-    },
-    
-    // Göztepe Maçları
-    { 
-        team_1: "Göztepe", 
-        team_2: "Kasımpaşa", 
-        title: "Göztepe vs Kasımpaşa", 
-        date:"05.10.2025", 
-        league:"Süper Lig", 
-        quality:DEFAULT_QUALITY, 
-        fps:DEFAULT_FPS, 
-        link:"#", 
-        cover: PLACEHOLDER_COVER
     },
 ];
 
@@ -731,9 +668,34 @@ document.querySelectorAll('.submenu li').forEach(li => {
         document.querySelectorAll('.submenu li').forEach(item => item.classList.remove('active'));
         e.target.classList.add('active');
 
+        // Yan menüdeki takım başlıklarının rengini sıfırla
+        document.querySelectorAll('.team-header').forEach(header => header.classList.remove('active'));
+
+
         filterMatches(team, league);
     });
 });
+
+// Takım başlıklarına tıklama olayını ekle
+document.querySelectorAll('.sidebar li.team-header').forEach(header => {
+    // Tüm Maçlar butonu için özel durum
+    if (header.dataset.team === 'Tüm Maçlar') {
+        header.addEventListener('click', () => {
+             // Diğer tüm aktiflikleri temizle
+            document.querySelectorAll('.submenu li').forEach(item => item.classList.remove('active'));
+            document.querySelectorAll('.team-header').forEach(h => h.classList.remove('active'));
+            header.classList.add('active'); // Tüm Maçlar'ı aktif yap
+            filterMatches('Tüm Maçlar', 'Tümü');
+        });
+    } else {
+        // Alt menüsü olanlar için sadece alt menüyü açma/kapama yapmalı (toggleSub zaten bunu yapıyor)
+        // Ancak bu alt menüyü açtığında takım başlığını da aktif yapalım
+        header.addEventListener('click', (e) => {
+            // Sadece header'a tıklayınca filtreleme yapma, alt menüye bırak.
+        });
+    }
+});
+
 
 function filterMatches(team, league){
     currentTeam = team;
@@ -796,11 +758,26 @@ function toggleMenu(){
 }
 
 function toggleSub(el){
-    el.classList.toggle('active');
-    const submenu = el.querySelector('.submenu');
-    if(submenu){
-        submenu.style.display = submenu.style.display==='block'?'none':'block';
-    }
+    const isActive = el.classList.contains('active');
+
+    // Önce tüm menü ve alt menüleri kapat
+    document.querySelectorAll('.sidebar li.team-header').forEach(header => {
+        header.classList.remove('active');
+        const submenu = header.querySelector('.submenu');
+        if (submenu) submenu.style.display = 'none';
+    });
+    
+    // Tıklanan menü zaten aktif değilse, sadece onu aç
+    if (!isActive) {
+        el.classList.add('active');
+        const submenu = el.querySelector('.submenu');
+        if(submenu){
+            submenu.style.display = 'block';
+        }
+    } else {
+        // Zaten aktifse, sadece alt menüyü kapat.
+        el.classList.remove('active');
+    }
 }
 
 // --- ADMİN FONKSİYONLARI ---
