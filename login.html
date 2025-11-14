@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zeus X Mexy Archive | Giriş</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+body {
+    margin:0;
+    font-family:'Inter',sans-serif;
+    background:#121212;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+#login-box {
+    background:#1E1E1E;
+    padding:30px;
+    border-radius:12px;
+    text-align:center;
+    border:2px solid #DC3545;
+    box-shadow:0 0 20px #DC3545;
+}
+#key-input {
+    width:100%;
+    padding:12px;
+    margin:15px 0;
+    border-radius:6px;
+    border:1px solid #333;
+    background:#2a2a2a;
+    color:white;
+    font-size:1em;
+}
+#login-btn {
+    width:100%;
+    padding:12px;
+    background:#DC3545;
+    border:none;
+    color:white;
+    font-weight:700;
+    border-radius:6px;
+    cursor:pointer;
+    transition:0.2s;
+}
+#login-btn:hover { background:#b02a37; }
+#msg { margin-top:10px; font-weight:700; color:#DC3545; }
+</style>
+</head>
+<body>
+<div id="login-box">
+  <h2>GİRİŞ YAP</h2>
+  <p>Devam etmek için key girin:</p>
+  <input type="password" id="key-input" placeholder="Key Gir">
+  <button id="login-btn" onclick="checkKey()">Giriş Yap</button>
+  <div id="msg"></div>
+</div>
+
+<script>
+const validKeys = ["Mexy1905@", "Zeus1967@", "NX7-PL8@2","G4L-TR9#1","VIP-MX21$","ARCHV-88!*","MXY-2025-OK","TRS!3492","BLUE-7X!90","KEY-9Zq@4","gs"];
+function checkKey(){
+    const input = document.getElementById('key-input').value;
+    const msg = document.getElementById('msg');
+    if(validKeys.includes(input)){
+        localStorage.setItem('mexy_archive_access', input);
+        window.location.href = "index.html";
+    } else {
+        msg.innerText = "❌ Hatalı Key";
+    }
+}
+</script>
+</body>
+</html>
