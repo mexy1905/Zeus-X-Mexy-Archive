@@ -1,274 +1,380 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Zeus X Mexy · Arşiv</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"> 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zeus X Mexy Archive</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg-color: #121212;
+    --panel-color: #1E1E1E;
+    --accent-color: #DC3545;
+    --hover-color: #b02a37;
+    --text-color: #E0E0E0;
+    --muted-color: #A0A0A0;
+    --border-color: #2a2a2a;
+    --shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+* { box-sizing: border-box; margin:0; padding:0; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+}
+
+#site-container { display: none; }
+
+.sidebar {
+    position: fixed;
+    top:0; left:0;
+    width:260px; height:100%;
+    background: var(--panel-color);
+    padding-top:20px;
+    overflow-y:auto;
+    transition: transform 0.3s ease;
+    z-index:100;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.6);
+}
+
+.sidebar.hidden { transform: translateX(-100%); }
+
+.sidebar h2 {
+    text-align:center;
+    color: var(--accent-color);
+    margin-bottom:25px;
+    font-weight:900;
+    font-size:1.5em;
+}
+
+.sidebar ul { list-style:none; padding:0 10px; }
+
+.sidebar li {
+    padding:12px 15px;
+    cursor:pointer;
+    border-radius:6px;
+    margin-bottom:5px;
+    transition: background 0.2s;
+    position: relative;
+}
+
+.sidebar li:hover { background: var(--hover-color); color:white; }
+.sidebar li.active { background: var(--accent-color); font-weight:bold; }
+
+.submenu {
+    display:none;
+    list-style:none;
+    padding-left:15px;
+    margin-top:5px;
+}
+
+.submenu li { padding:8px 10px; font-size:0.9em; }
+
+.hamburger {
+    position:fixed;
+    left:20px; top:20px;
+    font-size:30px;
+    cursor:pointer;
+    z-index:1000;
+    display:none;
+    color: var(--accent-color);
+}
+
+.content {
+    margin-left:260px;
+    padding:30px;
+    transition: margin-left 0.3s ease;
+}
+
+.content h1 {
+    font-size:2em; font-weight:900; color: var(--accent-color);
+    border-bottom:2px solid var(--border-color); padding-bottom:10px;
+}
+
+#matches {
+    display:grid;
+    grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+    gap:25px;
+    margin-top:20px;
+}
+
+.match-card {
+    background: var(--panel-color);
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border:1px solid var(--border-color);
+}
+
+.match-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.8), 0 0 10px var(--accent-color);
+}
+
+.match-cover {
+    width:100%; height:180px;
+    object-fit:cover;
+    background-color: var(--border-color);
+}
+
+.match-info {
+    padding:15px;
+}
+
+.match-title { font-size:1.25em; margin-bottom:5px; font-weight:700; color: var(--accent-color); }
+.match-meta { font-size:0.9em; color: var(--muted-color); }
+
+.download-btn {
+    display:block; padding:10px 15px; margin-top:15px;
+    background: var(--accent-color);
+    color:white; border-radius:6px; text-decoration:none;
+    text-align:center; font-weight:700; transition: background 0.2s;
+    border:0;
+}
+.download-btn:hover { background: var(--hover-color); }
+
+#password-overlay {
+    position:fixed; inset:0;
+    background: var(--bg-color);
+    display:flex; justify-content:center; align-items:center;
+    z-index:2000;
+}
+
+#password-box {
+    background: var(--panel-color);
+    padding:30px; width:320px; border-radius:12px;
+    text-align:center; border:2px solid var(--accent-color);
+    box-shadow:0 0 20px var(--accent-color);
+}
+
+#password-input {
+    width:100%; padding:12px; background:#2a2a2a; border:1px solid #333;
+    color:white; margin:15px 0; border-radius:6px; font-size:1em;
+}
+
+#password-submit {
+    width:100%; padding:12px; background: var(--accent-color);
+    border:none; cursor:pointer; color:white; border-radius:6px;
+    font-weight:700; transition: background 0.2s;
+}
+
+#password-submit:hover { background: var(--hover-color); }
+
+#password-message { margin-top:10px; font-weight:700; color:var(--accent-color); }
+
+#admin-btn {
+    display:none; position:fixed; top:20px; right:20px;
+    padding:10px 15px; background: var(--accent-color);
+    color:white; border:none; border-radius:6px; cursor:pointer; font-weight:700;
+    z-index:1000;
+}
+#admin-panel {
+    display:none; position:fixed; top:60px; right:20px;
+    background: var(--panel-color); padding:20px; border-radius:10px;
+    border:2px solid var(--accent-color); box-shadow:0 0 15px var(--accent-color);
+    width:300px;
+    z-index:1000;
+}
+
+@media(max-width:768px){
+    .hamburger{ display:block; }
+    .sidebar{ transform:translateX(-100%); }
+    .sidebar.active{ transform:translateX(0); }
+    .content{ margin-left:0; padding:15px; }
+}
+
+/* Açılır ok */
+.sidebar li.has-sub::after {
+    content:'▸';
+    position:absolute; right:15px;
+}
+.sidebar li.has-sub.active::after { content:'▾'; }
+
+</style>
 </head>
 <body>
 
-<div class="header">
-  <div class="logo">ZEUS X MEXY</div>
-  <div class="actions">
-    <button class="btn" onclick="goHome()">Anasayfa</button>
-    <button class="btn" onclick="logout()">Çıkış</button>
-    <button class="btn primary" onclick="openAdmin()">Admin</button>
-  </div>
+<!-- Şifre Ekranı -->
+<div id="password-overlay">
+    <div id="password-box">
+        <h2 style="color:var(--accent-color)">GİRİŞ YAP</h2>
+        <p style="color:var(--muted-color)">Devam etmek için key girin:</p>
+        <input type="password" id="password-input" placeholder="Key Gir">
+        <button id="password-submit" onclick="checkPassword()">Giriş Yap</button>
+        <div id="password-message"></div>
+    </div>
 </div>
 
-<div class="container">
-    <aside class="sidebar" id="sidebar">
-    <h3>Takımlar</h3>
+<!-- Site -->
+<div id="site-container">
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
 
-    <div class="team" onclick="toggleTeam(this)">
-      Galatasaray
-      <div class="sub">
-        <a href="#" onclick="openCategory('Galatasaray','Şampiyonlar Ligi',event)">Şampiyonlar Ligi</a>
-        <a href="#" onclick="openCategory('Galatasaray','Süper Lig',event)">Süper Lig</a>
-        <a href="#" onclick="openCategory('Galatasaray','Avrupa Ligi',event)">Avrupa Ligi</a>
-        <a href="#" onclick="openCategory('Galatasaray','Türkiye Kupası',event)">Türkiye Kupası</a>
-        <a href="#" onclick="openCategory('Galatasaray','Hazırlık Maçları',event)">Hazırlık Maçları</a>
-      </div>
-    </div>
+    <div class="sidebar" id="sidebar">
+        <h2>ZEUS X MEXY</h2>
+        <ul>
+            <li class="has-sub" data-team="Galatasaray" onclick="toggleSub(this)">Galatasaray
+                <ul class="submenu">
+                    <li>Şampiyonlar Ligi</li>
+                    <li>Süper Lig</li>
+                    <li>Avrupa Ligi</li>
+                    <li>Türkiye Kupası</li>
+                    <li>Hazırlık Maçları</li>
+                </ul>
+            </li>
+            <li class="has-sub" data-team="Fenerbahçe" onclick="toggleSub(this)">Fenerbahçe
+                <ul class="submenu">
+                    <li>Şampiyonlar Ligi</li>
+                    <li>Süper Lig</li>
+                    <li>Avrupa Ligi</li>
+                    <li>Türkiye Kupası</li>
+                    <li>Hazırlık Maçları</li>
+                </ul>
+            </li>
+            <li class="has-sub" data-team="Beşiktaş" onclick="toggleSub(this)">Beşiktaş
+                <ul class="submenu">
+                    <li>Şampiyonlar Ligi</li>
+                    <li>Süper Lig</li>
+                    <li>Avrupa Ligi</li>
+                    <li>Türkiye Kupası</li>
+                    <li>Hazırlık Maçları</li>
+                </ul>
+            </li>
+            <li class="has-sub" data-team="Trabzonspor" onclick="toggleSub(this)">Trabzonspor
+                <ul class="submenu">
+                    <li>Şampiyonlar Ligi</li>
+                    <li>Süper Lig</li>
+                    <li>Avrupa Ligi</li>
+                    <li>Türkiye Kupası</li>
+                    <li>Hazırlık Maçları</li>
+                </ul>
+            </li>
+            <li class="has-sub" data-team="Samsunspor" onclick="toggleSub(this)">Samsunspor
+                <ul class="submenu">
+                    <li>Şampiyonlar Ligi</li>
+                    <li>Süper Lig</li>
+                    <li>Avrupa Ligi</li>
+                    <li>Türkiye Kupası</li>
+                    <li>Hazırlık Maçları</li>
+                </ul>
+            </li>
+            <li class="has-sub" data-team="Göztepe" onclick="toggleSub(this)">Göztepe
+                <ul class="submenu">
+                    <li>Şampiyonlar Ligi</li>
+                    <li>Süper Lig</li>
+                    <li>Avrupa Ligi</li>
+                    <li>Türkiye Kupası</li>
+                    <li>Hazırlık Maçları</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 
-    <div class="team" onclick="toggleTeam(this)">
-      Fenerbahçe
-      <div class="sub">
-        <a href="#" onclick="openCategory('Fenerbahçe','Şampiyonlar Ligi',event)">Şampiyonlar Ligi</a>
-        <a href="#" onclick="openCategory('Fenerbahçe','Süper Lig',event)">Süper Lig</a>
-        <a href="#" onclick="openCategory('Fenerbahçe','Avrupa Ligi',event)">Avrupa Ligi</a>
-        <a href="#" onclick="openCategory('Fenerbahçe','Türkiye Kupası',event)">Türkiye Kupası</a>
-        <a href="#" onclick="openCategory('Fenerbahçe','Hazırlık Maçları',event)">Hazırlık Maçları</a>
-      </div>
-    </div>
+    <div class="content">
+        <h1>Maç Arşivi</h1>
+        <div id="matches"></div>
+    </div>
 
-    <div class="team" onclick="toggleTeam(this)">
-      Beşiktaş
-      <div class="sub">
-        <a href="#" onclick="openCategory('Beşiktaş','Şampiyonlar Ligi',event)">Şampiyonlar Ligi</a>
-        <a href="#" onclick="openCategory('Beşiktaş','Süper Lig',event)">Süper Lig</a>
-        <a href="#" onclick="openCategory('Beşiktaş','Avrupa Ligi',event)">Avrupa Ligi</a>
-        <a href="#" onclick="openCategory('Beşiktaş','Türkiye Kupası',event)">Türkiye Kupası</a>
-        <a href="#" onclick="openCategory('Beşiktaş','Hazırlık Maçları',event)">Hazırlık Maçları</a>
-      </div>
-    </div>
-    
-    <div class="team" onclick="toggleTeam(this)">
-      Trabzonspor
-      <div class="sub">
-        <a href="#" onclick="openCategory('Trabzonspor','Süper Lig',event)">Süper Lig</a>
-        <a href="#" onclick="openCategory('Trabzonspor','Türkiye Kupası',event)">Türkiye Kupası</a>
-      </div>
-    </div>
-  </aside>
-
-    <main class="content">
-    <h2 class="title">Maç Arşivi</h2>
-    <div id="category-title" class="subtitle">Yükleniyor...</div>
-    <div id="grid" class="grid"></div>
-    <div id="empty" class="small" style="display:none">Bu kategoriye ait maç bulunmamaktadır.</div>
-  </main>
-</div>
-
-<div id="modal" class="modal">
-  <div class="modal-box">
-    <h3 style="color:var(--accent)">Admin · Maç Ekle</h3>
-    <div class="small">Bu basit admin localStorage kullanır. Sonradan dışa aktarılır/ben içe alırım.</div>
-    <div style="height:10px"></div>
-    <div class="form-row"><input id="m_team" placeholder="Takım (Galatasaray/Fenerbahçe/Beşiktaş/Trabzonspor)"></div>
-    <div class="form-row"><input id="m_title" placeholder="Başlık (örn: Galatasaray - Fenerbahçe)"></div>
-    <div class="form-row"><input id="m_league" placeholder="Lig (Süper Lig / Şampiyonlar Ligi)"></div>
-    <div class="form-row"><input id="m_date" placeholder="Tarih (DD.MM.YYYY)"></div>
-    <div class="form-row"><input id="m_fps" placeholder="Kalite (4K 60FPS)"></div>
-    <div class="form-row"><input id="m_cover" placeholder="Cover URL (thumbnail)"></div>
-    <div class="form-row"><input id="m_link" placeholder="İndirme/izleme linki (drive/başka)"></div>
-    <div class="form-row"><input id="m_preview" placeholder="Opsiyonel: küçük preview video URL (mp4)"></div>
-    <div style="display:flex;gap:8px;margin-top:10px">
-      <button class="btn" onclick="closeAdmin()">İptal</button>
-      <button class="btn primary" onclick="addMatch()">Ekle</button>
-    </div>
-    <div class="small" style="margin-top:10px">Not: Admin ile eklenen maçlar `localStorage.matches` içinde saklanır.</div>
-  </div>
+    <button id="admin-btn" onclick="toggleAdmin()">Admin</button>
+    <div id="admin-panel">
+        <h3 style="color: var(--accent-color)">Admin Panel</h3>
+        <input type="text" id="new-key" placeholder="Yeni Key Gir" style="width:100%;padding:8px;margin-top:10px;border-radius:5px;border:1px solid #333;background:#2a2a2a;color:white;">
+        <button onclick="addKey()" style="margin-top:10px;width:100%;padding:10px;background: var(--accent-color);color:white;border:none;border-radius:5px;cursor:pointer;">Key Ekle</button>
+        <div id="admin-message" style="margin-top:10px;color: var(--accent-color);font-weight:700;"></div>
+    </div>
 </div>
 
 <script>
-/* ---------- AUTH CHECK ---------- */
-const storedKey = localStorage.getItem('mexy_archive_access');
-// 'gs' yazılınca 'Galatasaray' olarak dönüştürülme kuralını hatırlıyorum, ancak burada key kontrolü yapıldığı için 'gs' bir erişim anahtarı olarak kalmalıdır.
-const validKeys = ["Mexy1905@","Zeus1967@","NX7-PL8@2","G4L-TR9#1","VIP-MX21$","ARCHV-88!*","MXY-2025-OK","TRS!3492","BLUE-7X!90","KEY-9Zq@4","gs"];
-// Key kontrolü "login.html" dosyasına yönlendirme yapar.
-// if(!storedKey || !validKeys.includes(storedKey)){ window.location.href = 'login.html'; }
+const validKeys = ["Mexy1905@", "ZeusXAdmin@"];
+const adminKeys = ["Mexy1905@", "ZeusXAdmin@"];
+const STORAGE_KEY = 'mexy_archive_access';
+const PLACEHOLDER_COVER = 'https://i.imgur.com/GzQWl1i.png';
 
-const PLACEHOLDER_COVER = '//i.imgur.com/GzQWl1i.png'; 
-
-/* ---------- HARDCODED MATCHES LIST (Tüm maçlar) ---------- */
-const HARDCODED_MATCHES = [
-    // --- Galatasaray Maçları ---
-    { team: "Galatasaray", title: "Galatasaray - Manchester United", date: "03.10.2023", league: "Şampiyonlar Ligi", fps: "4K 60FPS", cover: "https://i.imgur.com/4ZQZb0y.jpeg", link: "https://drive.google.com/file/d/GS-MU-LINK" },
-    { team: "Galatasaray", title: "Kocaelispor 1 - 0 Galatasaray", date: "09.11.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/nYPi6k_cWpTpXGiF_768x432.jpg", link: "https://drive.google.com/file/d/KOC-GS-LINK" },
-    { team: "Galatasaray", title: "Galatasaray 3 - 0 Karagümrük", date: "15.08.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/C2soc-GmHyzodYnH_768x432.jpg", link: "https://drive.google.com/file/d/GS-KGK-LINK" },
-    { team: "Galatasaray", title: "Galatasaray 3 - 1 Konyaspor", date: "22.09.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/OM1L4VsIUzIjP4tG_768x432.jpg", link: "https://drive.google.com/file/d/GS-KON-LINK" },
-
-    // --- Trabzonspor Maçları ---
-    { team: "Trabzonspor", title: "Trabzonspor 1 - 0 Kocaelispor", date: "11.08.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/CjzD_10A0Udps5Sl_768x432.jpg", link: "https://drive.google.com/file/d/1aY2uTVfVDlPIg1suzfQxwFXxQr2GlHEq/view?usp=sharing" },
-    { team: "Trabzonspor", title: "Kasımpaşa 0 - 1 Trabzonspor", date: "18.08.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/6uiq46BDPXPd_zmv_768x432.jpg", link: "https://drive.google.com/file/d/1SBzlZzrkFBF19SYAl0fDrpy7IHT2JJ5E/view?usp=sharing" },
-    { team: "Trabzonspor", title: "Trabzonspor 1 - 1 Samsunspor", date: "31.08.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/ZPMkSyRKy1KzaFYM_768x432.jpg", link: "https://drive.google.com/file/d/1CgETGCUCSOTCFNIZ35oH7WlA8yd5nF8m/view?usp=sharing" },
-    { team: "Trabzonspor", title: "Trabzonspor 1 - 0 Antalyaspor", date: "24.08.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/1fS43vggPYNfr1Js_768x432.jpg", link: "https://drive.google.com/file/d/1ESLQ_cvTyZWnm8kWnz7Bdi-13TjCkAcr/view?usp=sharing" },
-    { team: "Trabzonspor", title: "Trabzonspor 1 - 1 Gaziantep FK", date: "20.09.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/sr1sprwDV0hK_HM2_768x432.jpg", link: "https://drive.google.com/file/d/1MsKfgnEunboUikWnxYoeF6tNOAAARmJ7/view?usp=sharing" },
-    { team: "Trabzonspor", title: "Trabzonspor 1 - 1 Alanyaspor", date: "08.11.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/9vHC2UIVjUTbrnyz_768x432.jpg", link: "https://drive.google.com/file/d/1OsAEiHCh-AmCZovafTQ9heQBVrzQQDsB/view?usp=sharing" },
-    { team: "Trabzonspor", title: "Trabzonspor 2 - 0 Eyüpspor", date: "25.10.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/FCWe8NGUVRtwZFHV_768x432.jpg", link: "https://drive.google.com/file/d/1uaeiHELW8a51ZvXKmQRtgv96_o6W-IoG/view?usp=sharing" },
-    { team: "Trabzonspor", title: "Rizespor 1 - 2 Trabzonspor", date: "18.10.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/drtrvziJ0tzBUt9A_768x432.jpg", link: "https://drive.google.com/file/d/1_LUIZ7AdbCoMMwl07gYUeOoqvsBFM7tg/view?usp=sharing" },
-    { team: "Trabzonspor", title: "Karagümrük 3 - 4 Trabzonspor", date: "27.09.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/bOn973T0WJVoxkPK_768x432.jpg", link: "https://drive.google.com/file/d/18HuEc7S-2svfW3QMFyAWCyIH6krZvhPc/view?usp=sharing" },
-    { team: "Trabzonspor", title: "Trabzonspor 1 - 5 Galatasaray", date: "Belirtilmemiş", league: "Süper Lig", fps: "BEİN 4K", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/tgjW7LPuYXNqaC3k_768x432.jpg", link: "https://drive.google.com/file/d/1uJ3cLjveLRVr4JHMLqr-sRiKgCNf-qsM/view?usp=sharing" },
-    
-    // Diğer takımlara ait örnek maçlar
-    { team: "Fenerbahçe", title: "Fenerbahçe 2 - 2 Beşiktaş", date: "24.11.2025", league: "Süper Lig", fps: "4K 50FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/hLxN91NQSRXM4Ojv_768x432.jpg", link: "#" },
-    { team: "Beşiktaş", title: "Beşiktaş 1 - 0 Trabzonspor", date: "17.11.2025", league: "Süper Lig", fps: "4K 50FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/-3OLulW8luMcZ84N_768x432.jpg", link: "#" },
+const matches = [
+    { cover: PLACEHOLDER_COVER, title: "Galatasaray - Fenerbahçe", date:"10.11.2025", league:"Süper Lig", fps:"4K 60FPS", link:"#", team:"Galatasaray"},
+    { cover: PLACEHOLDER_COVER, title: "Fenerbahçe - Beşiktaş", date:"15.11.2025", league:"Süper Lig", fps:"4K 60FPS", link:"#", team:"Fenerbahçe"},
+    { cover: PLACEHOLDER_COVER, title: "Beşiktaş - Galatasaray", date:"20.11.2025", league:"Süper Lig", fps:"1080p 60FPS", link:"#", team:"Beşiktaş"}
 ];
 
-/* ---------- DATA LOADING & PERSISTENCE ---------- */
-function loadMatches(){
-  const raw = localStorage.getItem('matches');
-  if(!raw) {
-        // Eğer localStorage boşsa, hardcoded listeyi kaydet ve geri döndür
-        saveMatches(HARDCODED_MATCHES);
-        return HARDCODED_MATCHES;
+window.addEventListener('load',()=>{
+    const storedKey = localStorage.getItem(STORAGE_KEY);
+    if(storedKey && validKeys.includes(storedKey)){
+        showSite(storedKey);
+    } else {
+        document.getElementById('password-overlay').style.display='flex';
     }
-  try { return JSON.parse(raw); } catch(e) { console.warn('matches parse error', e); return HARDCODED_MATCHES; }
-}
-function saveMatches(arr){
-  localStorage.setItem('matches', JSON.stringify(arr));
-}
+});
 
-/* ---------- UI & RENDER ---------- */
-let matches = loadMatches(); 
-const grid = document.getElementById('grid');
-const titleEl = document.getElementById('category-title');
-const emptyEl = document.getElementById('empty');
-
-function renderList(list){
-  grid.innerHTML = '';
-  if(!list || list.length===0){ emptyEl.style.display = 'block'; return; } else emptyEl.style.display = 'none';
-  list.forEach((m, idx)=>{
-    const card = document.createElement('div'); card.className='card';
-    // thumbnail
-    const img = document.createElement('img'); img.className='thumb'; 
-    img.src = m.cover || PLACEHOLDER_COVER; // Cover boşsa placeholder kullan
-    img.onerror = function() { this.src = PLACEHOLDER_COVER; }; // Link kırık ise placeholder kullan
-    img.alt = m.title || 'Maç';
-    card.appendChild(img);
-
-    // preview video (if preview url provided)
-    if(m.preview){
-      const vid = document.createElement('video');
-      vid.className = 'preview-video';
-      vid.src = m.preview;
-      vid.muted = true; vid.loop = true; vid.preload = 'metadata';
-      card.appendChild(vid);
-      // show/hide on hover events below
-    }
-
-    // overlay play
-    const overlay = document.createElement('div'); overlay.className='preview-layer';
-    const play = document.createElement('div'); play.className='play-overlay';
-    play.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
-    overlay.appendChild(play);
-    card.appendChild(overlay);
-
-    // body
-    const body = document.createElement('div'); body.className='card-body';
-    const h = document.createElement('div'); h.className='card-title'; h.innerText = m.title || 'Başlıksız';
-    const meta = document.createElement('div'); meta.className='card-meta'; meta.innerText = `${m.league || '-'}  •  ${m.date || '-'}  •  ${m.fps || '-'}`;
-    const a = document.createElement('a'); a.className='download'; a.href = m.link || '#'; a.target = '_blank'; a.innerText = 'İndir / İzle';
-
-    body.appendChild(h); body.appendChild(meta); body.appendChild(a);
-    card.appendChild(body);
-
-    // hover behavior: if preview video exists, show it on hover; else just show overlay
-    card.addEventListener('mouseenter', ()=>{
-      const v = card.querySelector('video.preview-video');
-      if(v){ v.style.display='block'; v.play().catch(()=>{}); card.querySelector('.thumb').style.opacity='0.0'; }
-      card.querySelector('.play-overlay').style.opacity = 1;
-    });
-    card.addEventListener('mouseleave', ()=>{
-      const v = card.querySelector('video.preview-video');
-      if(v){ v.pause(); v.style.display='none'; card.querySelector('.thumb').style.opacity='1'; }
-      card.querySelector('.play-overlay').style.opacity = 0;
-    });
-
-    grid.appendChild(card);
-  });
+function checkPassword(){
+    const input = document.getElementById('password-input').value;
+    const msg = document.getElementById('password-message');
+    if(validKeys.includes(input)){
+        localStorage.setItem(STORAGE_KEY,input);
+        showSite(input);
+    } else {
+        msg.innerText="❌ Hatalı Key";
+    }
 }
 
-/* ---------- CATEGORY FILTER ---------- */
-function openCategory(team, league, e){
-  if(e) e.preventDefault(), e.stopPropagation();
-  
-  // Başlıkları ayarla
-  document.querySelector('.title').innerText = `${team} Maçları`;
-  titleEl.innerText = league;
-  
-  // Tüm aktif linkleri temizle ve yeni aktif linki ayarla
-  document.querySelectorAll('.sub a').forEach(a => a.classList.remove('active'));
-  if(e) e.target.classList.add('active');
-
-  // Filtreleme mantığı: Takım ve Lig eşleşmesi
-  const filtered = matches.filter(m => (m.team === team) && (m.league && m.league.includes(league)));
-  renderList(filtered);
+function showSite(key){
+    document.getElementById('password-overlay').style.display='none';
+    document.getElementById('site-container').style.display='block';
+    loadMatches();
+    if(adminKeys.includes(key)){
+        document.getElementById('admin-btn').style.display='block';
+    }
 }
 
-/* ---------- INITIAL DEFAULT ---------- */
-function goHome(){
-  // Varsayılan: Galatasaray Süper Lig'i aç
-  const defaultTeamEl = document.querySelector('.team');
-  // Sidebar'da Galatasaray'ı otomatik aç
-  defaultTeamEl.classList.add('open');
-  // Galatasaray - Süper Lig maçlarını yükle
-  openCategory('Galatasaray','Süper Lig', null);
-  
-  // Varsayılan kategorinin linkini aktif olarak işaretle
-  const defaultLink = defaultTeamEl.querySelector('.sub a:nth-child(2)'); // Galatasaray > Süper Lig (2. sıradaki link)
-  if(defaultLink) defaultLink.classList.add('active');
+function toggleMenu(){
+    document.getElementById('sidebar').classList.toggle('hidden');
+    if(window.innerWidth<=768){
+        document.getElementById('sidebar').classList.toggle('active');
+    }
 }
 
-/* ---------- SIDEBAR UTILS ---------- */
-function toggleTeam(el){ el.classList.toggle('open'); }
-
-/* ---------- ADMIN ---------- */
-const modal = document.getElementById('modal');
-function openAdmin(){ modal.classList.add('open'); }
-function closeAdmin(){ modal.classList.remove('open'); }
-
-function addMatch(){
-  const m_team = document.getElementById('m_team').value.trim();
-  const m_title = document.getElementById('m_title').value.trim();
-  const m_league = document.getElementById('m_league').value.trim();
-  const m_date = document.getElementById('m_date').value.trim();
-  const m_fps = document.getElementById('m_fps').value.trim();
-  const m_cover = document.getElementById('m_cover').value.trim();
-  const m_link = document.getElementById('m_link').value.trim();
-  const m_preview = document.getElementById('m_preview').value.trim();
-
-  if(!m_team || !m_title){ alert('Takım ve başlık gerekli'); return; }
-
-  const item = { team: m_team, title: m_title, league: m_league, date: m_date, fps: m_fps, cover: m_cover, link: m_link, preview: m_preview };
-  matches.unshift(item); // Yeni maçı listenin başına ekle
-  saveMatches(matches); // Yerel depolamaya kaydet
-  closeAdmin();
-  goHome(); // Anasayfayı yenile
+function toggleSub(el){
+    el.classList.toggle('active');
+    const submenu = el.querySelector('.submenu');
+    if(submenu){
+        submenu.style.display = submenu.style.display==='block'?'none':'block';
+    }
 }
 
-/* ---------- LOGOUT ---------- */
-function logout(){ localStorage.removeItem('mexy_archive_access'); window.location.href = 'login.html'; }
+function loadMatches(){
+    const box = document.getElementById('matches');
+    box.innerHTML='';
+    matches.forEach(m=>{
+        box.innerHTML+=`
+        <div class="match-card">
+            <img src="${m.cover}" class="match-cover" onerror="this.src='${PLACEHOLDER_COVER}'">
+            <div class="match-info">
+                <div class="match-title">${m.title}</div>
+                <div class="match-meta">${m.league} | ${m.date} | 🎥 ${m.fps}</div>
+                <a class="download-btn" href="${m.link}" target="_blank">🔗 İndir</a>
+            </div>
+        </div>`;
+    });
+}
 
-/* ---------- BOOT ---------- */
-// Sayfa yüklendiğinde:
-setTimeout(()=>{ 
-  matches = loadMatches();
-  goHome(); // Varsayılan görünümü yükle
-},150);
+function toggleAdmin(){
+    const panel = document.getElementById('admin-panel');
+    panel.style.display = panel.style.display==='block'?'none':'block';
+}
+
+function addKey(){
+    const input = document.getElementById('new-key').value;
+    const msg = document.getElementById('admin-message');
+    if(input && !validKeys.includes(input)){
+        validKeys.push(input);
+        msg.innerText = '✅ Key eklendi!';
+        document.getElementById('new-key').value='';
+    } else {
+        msg.innerText = '⚠️ Geçersiz veya zaten var!';
+    }
+}
 </script>
 </body>
 </html>
