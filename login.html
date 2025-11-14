@@ -1,75 +1,50 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zeus X Mexy Archive | Giriş</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Zeus X Mexy · Giriş</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-body {
-    margin:0;
-    font-family:'Inter',sans-serif;
-    background:#121212;
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-}
-#login-box {
-    background:#1E1E1E;
-    padding:30px;
-    border-radius:12px;
-    text-align:center;
-    border:2px solid #DC3545;
-    box-shadow:0 0 20px #DC3545;
-}
-#key-input {
-    width:100%;
-    padding:12px;
-    margin:15px 0;
-    border-radius:6px;
-    border:1px solid #333;
-    background:#2a2a2a;
-    color:white;
-    font-size:1em;
-}
-#login-btn {
-    width:100%;
-    padding:12px;
-    background:#DC3545;
-    border:none;
-    color:white;
-    font-weight:700;
-    border-radius:6px;
-    cursor:pointer;
-    transition:0.2s;
-}
-#login-btn:hover { background:#b02a37; }
-#msg { margin-top:10px; font-weight:700; color:#DC3545; }
+  :root { --bg:#0f0f10; --card:#171717; --accent:#DC3545; --accent2:#FFB703; --text:#E6E6E6; }
+  *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Arial;background:var(--bg);color:var(--text);display:flex;align-items:center;justify-content:center;height:100vh}
+  .box{width:360px;background:var(--card);border-radius:12px;padding:28px;border:2px solid rgba(220,53,69,0.06);box-shadow:0 10px 30px rgba(0,0,0,0.6);text-align:center}
+  h1{margin:0 0 8px;font-weight:800;color:var(--accent)}
+  p{margin:0 0 18px;color:#a8a8a8}
+  input{width:100%;padding:12px;border-radius:8px;border:1px solid #262626;background:#101010;color:var(--text);outline:none}
+  button{width:100%;margin-top:12px;padding:12px;border-radius:8px;border:0;background:linear-gradient(90deg,var(--accent),#b3303f);color:white;font-weight:700;cursor:pointer}
+  .msg{margin-top:12px;font-weight:700;color:var(--accent2)}
+  .small{margin-top:10px;color:#8f8f8f;font-size:13px}
+  footer{margin-top:14px;color:#6f6f6f;font-size:12px}
 </style>
 </head>
 <body>
-<div id="login-box">
-  <h2>GİRİŞ YAP</h2>
-  <p>Devam etmek için key girin:</p>
-  <input type="password" id="key-input" placeholder="Key Gir">
-  <button id="login-btn" onclick="checkKey()">Giriş Yap</button>
-  <div id="msg"></div>
-</div>
+  <div class="box">
+    <h1>ZEUS X MEXY</h1>
+    <p>Siteye giriş yapmak için key gir</p>
+    <input id="key" type="password" placeholder="Key gir..." autofocus>
+    <button onclick="login()">Giriş Yap</button>
+    <div id="msg" class="msg"></div>
+    <div class="small">Key’in yoksa admin ekleyebilir ya da bana liste gönder</div>
+    <footer>© Zeus X Mexy</footer>
+  </div>
 
 <script>
-const validKeys = ["Mexy1905@", "Zeus1967@", "NX7-PL8@2","G4L-TR9#1","VIP-MX21$","ARCHV-88!*","MXY-2025-OK","TRS!3492","BLUE-7X!90","KEY-9Zq@4","gs"];
-function checkKey(){
-    const input = document.getElementById('key-input').value;
-    const msg = document.getElementById('msg');
-    if(validKeys.includes(input)){
-        localStorage.setItem('mexy_archive_access', input);
-        window.location.href = "index.html";
-    } else {
-        msg.innerText = "❌ Hatalı Key";
-    }
+const validKeys = ["Mexy1905@","Zeus1967@","NX7-PL8@2","G4L-TR9#1","VIP-MX21$","ARCHV-88!*","MXY-2025-OK","TRS!3492","BLUE-7X!90","KEY-9Zq@4","gs"];
+function login(){
+  const k = document.getElementById('key').value.trim();
+  const msg = document.getElementById('msg');
+  if(!k){ msg.innerText = "Key gir."; return; }
+  if(validKeys.includes(k)){
+    localStorage.setItem('mexy_archive_access', k);
+    // küçük güvenlik adımı: set matches_last_seen time
+    localStorage.setItem('mexy_last_login', new Date().toISOString());
+    window.location.href = 'index.html';
+  } else {
+    msg.innerText = "❌ Hatalı Key";
+  }
 }
+document.getElementById('key').addEventListener('keydown', e=>{ if(e.key==='Enter') login(); });
 </script>
 </body>
 </html>
