@@ -5,68 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Zeus X Mexy · Arşiv</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<style>
-/* Stil düzeltildi: Arkaplan siyah (dark) temaya geri alındı. */
-:root{
-  --bg:#0f0f10; --panel:#171717; --accent:#DC3545; --accent2:#FFB703; --muted:#a0a0a0; --text:#e6e6e6;
-  --border: #232323;
-}
-*{box-sizing:border-box}
-body{margin:0;font-family:Inter,system-ui,Arial;background:var(--bg);color:var(--text);min-height:100vh}
-.header{position:fixed;left:0;right:0;top:0;height:64px;display:flex;align-items:center;gap:12px;padding:0 18px;background:linear-gradient(180deg,rgba(0,0,0,0.2),transparent);z-index:90}
-.logo{font-weight:800;color:var(--accent);font-size:18px}
-.header .actions{margin-left:auto;display:flex;gap:10px;align-items:center}
-.btn{background:var(--panel);border:1px solid var(--border);color:var(--text);padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600}
-.btn.primary{background:linear-gradient(90deg,var(--accent),#b3303f);color:white;border:0}
-.container{display:flex;padding-top:84px}
-
-/* SIDEBAR */
-.sidebar{width:260px;background:var(--panel);padding:18px;border-right:1px solid var(--border);height:calc(100vh - 84px);position:sticky;top:84px;overflow:auto}
-.sidebar h3{margin:0 0 12px;color:var(--accent);font-weight:800}
-.team{padding:10px;border-radius:8px;margin-bottom:8px;cursor:pointer;border:1px solid transparent}
-/* Sidebar takımları için text rengi düzeltildi */
-.team{color: var(--text);} 
-.team:hover{background:#1b1b1b}
-.team.open{border-color:rgba(255,183,3,0.12)}
-.sub{margin-top:8px;padding-left:10px;display:none}
-.team.open .sub{display:block}
-.sub a{display:block;padding:8px;border-radius:6px;color:var(--muted);text-decoration:none}
-.sub a:hover, .sub a.active{background:#181818;color:var(--text)}
-
-/* CONTENT */
-.content{flex:1;padding:18px 24px}
-.title{font-size:26px;font-weight:800;color:var(--accent);margin:0}
-.subtitle{color:var(--muted);margin-top:6px;margin-bottom:18px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
-
-/* CARD */
-.card{background:linear-gradient(180deg,#131313, #161616);border-radius:12px;overflow:hidden;border:1px solid var(--border);box-shadow:0 6px 20px rgba(0,0,0,0.6);position:relative}
-.thumb{width:100%;height:180px;object-fit:cover;background:#222}
-.card-body{padding:12px}
-.card-title{font-weight:700;color:var(--accent);margin-bottom:6px}
-.card-meta{color:var(--muted);font-size:13px}
-.download{display:inline-block;margin-top:10px;padding:8px 10px;border-radius:8px;background:var(--accent2);color:#111;font-weight:800;text-decoration:none}
-
-/* HOVER PREVIEW */
-.preview-layer{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
-.play-overlay{width:72px;height:72px;border-radius:999px;background:rgba(0,0,0,0.55);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .15s}
-.card:hover .play-overlay{opacity:1;pointer-events:auto}
-.play-overlay svg{transform:translateX(4px);fill:var(--accent2)}
-
-/* PREVIEW VIDEO (inserted dynamically) */
-.preview-video{position:absolute;top:6px;left:6px;right:6px;height:168px;border-radius:8px;object-fit:cover;display:none;z-index:9}
-
-/* ADMIN PANEL (modal) */
-.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:200}
-.modal.open{display:flex}
-.modal-box{background:var(--panel);padding:18px;border-radius:10px;width:420px;border:1px solid var(--border)}
-.form-row{display:flex;gap:8px;margin-bottom:8px}
-.form-row input, .form-row select, textarea{flex:1;padding:8px;border-radius:8px;background:#0f0f11;border:1px solid #222;color:var(--text)}
-.small{font-size:13px;color:var(--muted);margin-top:8px}
-
-/* RESPONSIVE */
-@media(max-width:900px){.sidebar{display:none}.container{padding-top:92px}.content{padding:12px}}
-</style>
+<link rel="stylesheet" href="style.css"> 
 </head>
 <body>
 
@@ -157,14 +96,11 @@ body{margin:0;font-family:Inter,system-ui,Arial;background:var(--bg);color:var(-
 <script>
 /* ---------- AUTH CHECK ---------- */
 const storedKey = localStorage.getItem('mexy_archive_access');
+// 'gs' yazılınca 'Galatasaray' olarak dönüştürülme kuralını hatırlıyorum, ancak burada key kontrolü yapıldığı için 'gs' bir erişim anahtarı olarak kalmalıdır.
 const validKeys = ["Mexy1905@","Zeus1967@","NX7-PL8@2","G4L-TR9#1","VIP-MX21$","ARCHV-88!*","MXY-2025-OK","TRS!3492","BLUE-7X!90","KEY-9Zq@4","gs"];
 // Key kontrolü "login.html" dosyasına yönlendirme yapar.
-if(!storedKey || !validKeys.includes(storedKey)){ 
-    // window.location.href = 'login.html'; 
-    // Eğer login.html dosyanız yoksa veya yerel çalışıyorsa bu satırı yorumda bırakın/silin
-}
+// if(!storedKey || !validKeys.includes(storedKey)){ window.location.href = 'login.html'; }
 
-// Placeholder cover for broken images
 const PLACEHOLDER_COVER = '//i.imgur.com/GzQWl1i.png'; 
 
 /* ---------- HARDCODED MATCHES LIST (Tüm maçlar) ---------- */
@@ -219,8 +155,8 @@ function renderList(list){
     const card = document.createElement('div'); card.className='card';
     // thumbnail
     const img = document.createElement('img'); img.className='thumb'; 
-    img.src = m.cover || PLACEHOLDER_COVER; // Use placeholder if cover is null/empty
-    img.onerror = function() { this.src = PLACEHOLDER_COVER; }; // Fallback for broken link
+    img.src = m.cover || PLACEHOLDER_COVER; // Cover boşsa placeholder kullan
+    img.onerror = function() { this.src = PLACEHOLDER_COVER; }; // Link kırık ise placeholder kullan
     img.alt = m.title || 'Maç';
     card.appendChild(img);
 
@@ -266,7 +202,7 @@ function renderList(list){
   });
 }
 
-/* ---------- CATEGORY FILTER (Düzeltilmiş) ---------- */
+/* ---------- CATEGORY FILTER ---------- */
 function openCategory(team, league, e){
   if(e) e.preventDefault(), e.stopPropagation();
   
@@ -287,7 +223,9 @@ function openCategory(team, league, e){
 function goHome(){
   // Varsayılan: Galatasaray Süper Lig'i aç
   const defaultTeamEl = document.querySelector('.team');
+  // Sidebar'da Galatasaray'ı otomatik aç
   defaultTeamEl.classList.add('open');
+  // Galatasaray - Süper Lig maçlarını yükle
   openCategory('Galatasaray','Süper Lig', null);
   
   // Varsayılan kategorinin linkini aktif olarak işaretle
@@ -316,10 +254,10 @@ function addMatch(){
   if(!m_team || !m_title){ alert('Takım ve başlık gerekli'); return; }
 
   const item = { team: m_team, title: m_title, league: m_league, date: m_date, fps: m_fps, cover: m_cover, link: m_link, preview: m_preview };
-  matches.unshift(item); 
-  saveMatches(matches); 
+  matches.unshift(item); // Yeni maçı listenin başına ekle
+  saveMatches(matches); // Yerel depolamaya kaydet
   closeAdmin();
-  goHome(); 
+  goHome(); // Anasayfayı yenile
 }
 
 /* ---------- LOGOUT ---------- */
@@ -329,7 +267,7 @@ function logout(){ localStorage.removeItem('mexy_archive_access'); window.locati
 // Sayfa yüklendiğinde:
 setTimeout(()=>{ 
   matches = loadMatches();
-  goHome(); // Varsayılan görünümü yükle (Galatasaray - Süper Lig)
+  goHome(); // Varsayılan görünümü yükle
 },150);
 </script>
 </body>
