@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zeus X Mexy Archive | Spor Arşivi</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg-color: #121212;
+    --panel-color: #1E1E1E;
+    --accent-color: #DC3545;
+    --hover-color: #b02a37;
+    --text-color: #E0E0E0;
+    --muted-color: #A0A0A0;
+    --border-color: #2a2a2a;
+    --shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',sans-serif;background:var(--bg-color);color:var(--text-color);}
+.sidebar{position:fixed;top:0;left:0;width:260px;height:100%;background:var(--panel-color);padding-top:20px;transform:translateX(0);transition:transform 0.3s ease;z-index:100;box-shadow:2px 0 8px rgba(0,0,0,0.6);}
+.sidebar.hidden{transform:translateX(-100%);}
+.sidebar h2{text-align:center;color:var(--accent-color);margin-bottom:25px;font-size:1.5em;font-weight:900;}
+.sidebar ul{list-style:none;padding:0;margin:0 10px;}
+.sidebar li{padding:12px 15px;cursor:pointer;border-radius:6px;margin-bottom:5px;transition:background 0.2s,color 0.2s;}
+.sidebar li:hover{background:var(--hover-color);color:white;}
+.sidebar li.active{background:var(--accent-color);color:white;font-weight:bold;}
+.hamburger{position:fixed;left:20px;top:20px;font-size:30px;cursor:pointer;z-index:1000;display:none;color:var(--accent-color);}
+.content{margin-left:260px;padding:30px;transition:margin-left 0.3s ease;}
+.content h1{font-size:2em;font-weight:900;color:var(--accent-color);border-bottom:2px solid var(--border-color);padding-bottom:10px;}
+#category-title{color:var(--muted-color);font-size:1.1em;margin-top:-10px;margin-bottom:25px;font-weight:700;}
+#matches{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:25px;margin-top:20px;}
+.match-card{background:var(--panel-color);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);transition:transform 0.2s,box-shadow 0.2s;border:1px solid var(--border-color);}
+.match-card:hover{transform:translateY(-5px);box-shadow:0 10px 20px rgba(0,0,0,0.8),0 0 10px var(--accent-color);}
+.match-cover{width:100%;height:180px;object-fit:cover;display:block;background-color:var(--border-color);}
+.match-info{padding:15px;}
+.match-title{font-size:1.25em;margin-bottom:5px;color:var(--accent-color);font-weight:700;}
+.match-meta{font-size:0.9em;color:var(--muted-color);margin-bottom:10px;}
+.download-btn{display:block;padding:10px 15px;margin-top:15px;background:var(--accent-color);color:white;border-radius:6px;text-decoration:none;text-align:center;font-weight:700;transition:background 0.2s;border:0;}
+.download-btn:hover{background:var(--hover-color);}
+@media(max-width:768px){.hamburger{display:block;}.sidebar{transform:translateX(-100%);}.sidebar.active{transform:translateX(0);}.content{margin-left:0;padding:15px;}}
+</style>
+</head>
+<body>
+
+<script>
+// --- KEY KONTROLÜ ---
+const storedKey = localStorage.getItem('mexy_archive_access');
+const validKeys = ["Mexy1905@", "Zeus1967@", "NX7-PL8@2","G4L-TR9#1","VIP-MX21$","ARCHV-88!*","MXY-2025-OK","TRS!3492","BLUE-7X!90","KEY-9Zq@4","gs"];
+if(!storedKey || !validKeys.includes(storedKey)){
+    window.location.href = "login.html";
+}
+</script>
+
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+
+<div class="sidebar" id="sidebar">
+    <h2>ZEUS X MEXY</h2>
+    <ul>
+        <li onclick="toggleSubmenu(this)">Galatasaray ▸
+            <ul style="display:none;margin-left:10px;">
+                <li onclick="openCategory('Galatasaray','Şampiyonlar Ligi',event)">Şampiyonlar Ligi</li>
+                <li onclick="openCategory('Galatasaray','Süper Lig',event)">Süper Lig</li>
+                <li onclick="openCategory('Galatasaray','Avrupa Ligi',event)">Avrupa Ligi</li>
+                <li onclick="openCategory('Galatasaray','Türkiye Kupası',event)">Türkiye Kupası</li>
+                <li onclick="openCategory('Galatasaray','Hazırlık Maçları',event)">Hazırlık Maçları</li>
+            </ul>
+        </li>
+        <li onclick="toggleSubmenu(this)">Fenerbahçe ▸
+            <ul style="display:none;margin-left:10px;">
+                <li onclick="openCategory('Fenerbahçe','Şampiyonlar Ligi',event)">Şampiyonlar Ligi</li>
+                <li onclick="openCategory('Fenerbahçe','Süper Lig',event)">Süper Lig</li>
+                <li onclick="openCategory('Fenerbahçe','Avrupa Ligi',event)">Avrupa Ligi</li>
+                <li onclick="openCategory('Fenerbahçe','Türkiye Kupası',event)">Türkiye Kupası</li>
+                <li onclick="openCategory('Fenerbahçe','Hazırlık Maçları',event)">Hazırlık Maçları</li>
+            </ul>
+        </li>
+        <li onclick="toggleSubmenu(this)">Beşiktaş ▸
+            <ul style="display:none;margin-left:10px;">
+                <li onclick="openCategory('Beşiktaş','Şampiyonlar Ligi',event)">Şampiyonlar Ligi</li>
+                <li onclick="openCategory('Beşiktaş','Süper Lig',event)">Süper Lig</li>
+                <li onclick="openCategory('Beşiktaş','Avrupa Ligi',event)">Avrupa Ligi</li>
+                <li onclick="openCategory('Beşiktaş','Türkiye Kupası',event)">Türkiye Kupası</li>
+                <li onclick="openCategory('Beşiktaş','Hazırlık Maçları',event)">Hazırlık Maçları</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div class="content">
+    <h1>Maç Arşivi</h1>
+    <p id="category-title">...</p>
+    <div id="matches"></div>
+</div>
+
+<script>
+const PLACEHOLDER_COVER = 'https://i.imgur.com/GzQWl1i.png';
+const matches = [
+    {cover:"https://i.imgur.com/4ZQZb0y.jpeg",title:"Galatasaray - Manchester United",date:"03.10.2023",league:"Şampiyonlar Ligi",fps:"4K 60FPS",link:"#",team:"Galatasaray"},
+    {cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/nYPi6k_cWpTpXGiF_768x432.jpg",title:"Kocaelispor 1 - 0 Galatasaray",date:"09.11.2025",league:"Süper Lig",fps:"1080p 60FPS",link:"#",team:"Galatasaray"},
+    {cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/hLxN91NQSRXM4Ojv_768x432.jpg",title:"Fenerbahçe 2 - 2 Beşiktaş",date:"24.11.2025",league:"Süper Lig Derbi",fps:"4K 50FPS",link:"#",team:"Fenerbahçe"},
+    {cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/-3OLulW8luMcZ84N_768x432.jpg",title:"Beşiktaş 1 - 0 Trabzonspor",date:"17.11.2025",league:"Süper Lig Derbi",fps:"4K 50FPS",link:"#",team:"Beşiktaş"}
+];
+
+function toggleMenu(){
+    const sb = document.getElementById('sidebar');
+    sb.classList.toggle('hidden');
+    if(window.innerWidth <= 768){ sb.classList.toggle('active'); }
+}
+
+function toggleSubmenu(li){
+    const ul = li.querySelector('ul');
+    if(ul){ ul.style.display = ul.style.display === 'none' ? 'block' : 'none'; }
+}
+
+function openCategory(team, league, e){
+    e.stopPropagation();
+    const box = document.getElementById('matches');
+    const title = document.getElementById('category-title');
+    box.innerHTML = "";
+    title.innerText = `${team} - ${league} Maçları`;
+    const filtered = matches.filter(m=>m.team===team && m.league.includes(league));
+    if(filtered.length===0){ box.innerHTML='<p style="color:var(--muted-color); text-align:center; margin-top:50px;">Bu kategoride maç bulunmamaktadır.</p>'; return; }
+    filtered.forEach(m=>{
+        box.innerHTML += `<div class="match-card">
+            <img src="${m.cover}" class="match-cover" alt="${m.title}" onerror="this.onerror=null;this.src='${PLACEHOLDER_COVER}';">
+            <div class="match-info">
+                <div class="match-title">${m.title}</div>
+                <div class="match-meta">${m.league} | ${m.date} | 🎥 ${m.fps}</div>
+                <a class="download-btn" href="${m.link}" target="_blank">🔗 İndir</a>
+            </div>
+        </div>`;
+    });
+}
+</script>
+
+</body>
+</html>
