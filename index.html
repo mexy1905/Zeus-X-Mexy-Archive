@@ -7,8 +7,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0f0f10; --panel:#171717; --accent:#DC3545; --accent2:#FFB703; --muted:#a0a0a0; --text:#e6e6e6;
-  --border: #232323;
+  --bg:#0f0f10; --panel:#171717; --accent:#DC3545; --accent2:#FFB703; --muted:#a0a0a0; --text:#e6e6e6;
+  --border: #232323;
 }
 *{box-sizing:border-box}
 body{margin:0;font-family:Inter,system-ui,Arial;background:var(--bg);color:var(--text);min-height:100vh}
@@ -67,84 +67,88 @@ body{margin:0;font-family:Inter,system-ui,Arial;background:var(--bg);color:var(-
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
-  <div class="logo">ZEUS X MEXY</div>
-  <div class="actions">
-    <button class="btn" onclick="goHome()">Anasayfa</button>
-    <button class="btn" onclick="logout()">Çıkış</button>
-    <button class="btn primary" onclick="openAdmin()">Admin</button>
-  </div>
+  <div class="logo">ZEUS X MEXY</div>
+  <div class="actions">
+    <button class="btn" onclick="goHome()">Anasayfa</button>
+    <button class="btn" onclick="logout()">Çıkış</button>
+    <button class="btn primary" onclick="openAdmin()">Admin</button>
+  </div>
 </div>
 
 <div class="container">
-  <!-- SIDEBAR -->
-  <aside class="sidebar" id="sidebar">
-    <h3>Takımlar</h3>
+    <aside class="sidebar" id="sidebar">
+    <h3>Takımlar</h3>
 
-    <div class="team" onclick="toggleTeam(this)">
-      Galatasaray
-      <div class="sub">
-        <a href="#" onclick="openCategory('Galatasaray','Şampiyonlar Ligi',event)">Şampiyonlar Ligi</a>
-        <a href="#" onclick="openCategory('Galatasaray','Süper Lig',event)">Süper Lig</a>
-        <a href="#" onclick="openCategory('Galatasaray','Avrupa Ligi',event)">Avrupa Ligi</a>
-        <a href="#" onclick="openCategory('Galatasaray','Türkiye Kupası',event)">Türkiye Kupası</a>
-        <a href="#" onclick="openCategory('Galatasaray','Hazırlık Maçları',event)">Hazırlık Maçları</a>
-      </div>
-    </div>
+    <div class="team" onclick="toggleTeam(this)">
+      Galatasaray
+      <div class="sub">
+        <a href="#" onclick="openCategory('Galatasaray','Şampiyonlar Ligi',event)">Şampiyonlar Ligi</a>
+        <a href="#" onclick="openCategory('Galatasaray','Süper Lig',event)">Süper Lig</a>
+        <a href="#" onclick="openCategory('Galatasaray','Avrupa Ligi',event)">Avrupa Ligi</a>
+        <a href="#" onclick="openCategory('Galatasaray','Türkiye Kupası',event)">Türkiye Kupası</a>
+        <a href="#" onclick="openCategory('Galatasaray','Hazırlık Maçları',event)">Hazırlık Maçları</a>
+      </div>
+    </div>
 
-    <div class="team" onclick="toggleTeam(this)">
-      Fenerbahçe
-      <div class="sub">
-        <a href="#" onclick="openCategory('Fenerbahçe','Şampiyonlar Ligi',event)">Şampiyonlar Ligi</a>
-        <a href="#" onclick="openCategory('Fenerbahçe','Süper Lig',event)">Süper Lig</a>
-        <a href="#" onclick="openCategory('Fenerbahçe','Avrupa Ligi',event)">Avrupa Ligi</a>
-        <a href="#" onclick="openCategory('Fenerbahçe','Türkiye Kupası',event)">Türkiye Kupası</a>
-        <a href="#" onclick="openCategory('Fenerbahçe','Hazırlık Maçları',event)">Hazırlık Maçları</a>
-      </div>
-    </div>
+    <div class="team" onclick="toggleTeam(this)">
+      Fenerbahçe
+      <div class="sub">
+        <a href="#" onclick="openCategory('Fenerbahçe','Şampiyonlar Ligi',event)">Şampiyonlar Ligi</a>
+        <a href="#" onclick="openCategory('Fenerbahçe','Süper Lig',event)">Süper Lig</a>
+        <a href="#" onclick="openCategory('Fenerbahçe','Avrupa Ligi',event)">Avrupa Ligi</a>
+        <a href="#" onclick="openCategory('Fenerbahçe','Türkiye Kupası',event)">Türkiye Kupası</a>
+        <a href="#" onclick="openCategory('Fenerbahçe','Hazırlık Maçları',event)">Hazırlık Maçları</a>
+      </div>
+    </div>
 
-    <div class="team" onclick="toggleTeam(this)">
-      Beşiktaş
-      <div class="sub">
-        <a href="#" onclick="openCategory('Beşiktaş','Şampiyonlar Ligi',event)">Şampiyonlar Ligi</a>
-        <a href="#" onclick="openCategory('Beşiktaş','Süper Lig',event)">Süper Lig</a>
-        <a href="#" onclick="openCategory('Beşiktaş','Avrupa Ligi',event)">Avrupa Ligi</a>
-        <a href="#" onclick="openCategory('Beşiktaş','Türkiye Kupası',event)">Türkiye Kupası</a>
-        <a href="#" onclick="openCategory('Beşiktaş','Hazırlık Maçları',event)">Hazırlık Maçları</a>
-      </div>
-    </div>
-  </aside>
+    <div class="team" onclick="toggleTeam(this)">
+      Beşiktaş
+      <div class="sub">
+        <a href="#" onclick="openCategory('Beşiktaş','Şampiyonlar Ligi',event)">Şampiyonlar Ligi</a>
+        <a href="#" onclick="openCategory('Beşiktaş','Süper Lig',event)">Süper Lig</a>
+        <a href="#" onclick="openCategory('Beşiktaş','Avrupa Ligi',event)">Avrupa Ligi</a>
+        <a href="#" onclick="openCategory('Beşiktaş','Türkiye Kupası',event)">Türkiye Kupası</a>
+        <a href="#" onclick="openCategory('Beşiktaş','Hazırlık Maçları',event)">Hazırlık Maçları</a>
+      </div>
+    </div>
+    
+    <div class="team" onclick="toggleTeam(this)">
+      Trabzonspor
+      <div class="sub">
+        <a href="#" onclick="openCategory('Trabzonspor','Süper Lig',event)">Süper Lig</a>
+        <a href="#" onclick="openCategory('Trabzonspor','Türkiye Kupası',event)">Türkiye Kupası</a>
+      </div>
+    </div>
+  </aside>
 
-  <!-- CONTENT -->
-  <main class="content">
-    <h2 class="title">Maç Arşivi</h2>
-    <div id="category-title" class="subtitle">Yükleniyor...</div>
-    <div id="grid" class="grid"></div>
-    <div id="empty" class="small" style="display:none">Bu kategoriye ait maç bulunmamaktadır.</div>
-  </main>
+    <main class="content">
+    <h2 class="title">Maç Arşivi</h2>
+    <div id="category-title" class="subtitle">Yükleniyor...</div>
+    <div id="grid" class="grid"></div>
+    <div id="empty" class="small" style="display:none">Bu kategoriye ait maç bulunmamaktadır.</div>
+  </main>
 </div>
 
-<!-- ADMIN MODAL -->
 <div id="modal" class="modal">
-  <div class="modal-box">
-    <h3 style="color:var(--accent)">Admin · Maç Ekle</h3>
-    <div class="small">Bu basit admin localStorage kullanır. Sonradan dışa aktarılır/ben içe alırım.</div>
-    <div style="height:10px"></div>
-    <div class="form-row"><input id="m_team" placeholder="Takım (Galatasaray/Fenerbahçe/Beşiktaş)"></div>
-    <div class="form-row"><input id="m_title" placeholder="Başlık (örn: Galatasaray - Fenerbahçe)"></div>
-    <div class="form-row"><input id="m_league" placeholder="Lig (Süper Lig / Şampiyonlar Ligi)"></div>
-    <div class="form-row"><input id="m_date" placeholder="Tarih (DD.MM.YYYY)"></div>
-    <div class="form-row"><input id="m_fps" placeholder="Kalite (4K 60FPS)"></div>
-    <div class="form-row"><input id="m_cover" placeholder="Cover URL (thumbnail)"></div>
-    <div class="form-row"><input id="m_link" placeholder="İndirme/izleme linki (drive/başka)"></div>
-    <div class="form-row"><input id="m_preview" placeholder="Opsiyonel: küçük preview video URL (mp4)"></div>
-    <div style="display:flex;gap:8px;margin-top:10px">
-      <button class="btn" onclick="closeAdmin()">İptal</button>
-      <button class="btn primary" onclick="addMatch()">Ekle</button>
-    </div>
-    <div class="small" style="margin-top:10px">Not: Admin ile eklenen maçlar `localStorage.matches` içinde saklanır.</div>
-  </div>
+  <div class="modal-box">
+    <h3 style="color:var(--accent)">Admin · Maç Ekle</h3>
+    <div class="small">Bu basit admin localStorage kullanır. Sonradan dışa aktarılır/ben içe alırım.</div>
+    <div style="height:10px"></div>
+    <div class="form-row"><input id="m_team" placeholder="Takım (Galatasaray/Fenerbahçe/Beşiktaş/Trabzonspor)"></div>
+    <div class="form-row"><input id="m_title" placeholder="Başlık (örn: Galatasaray - Fenerbahçe)"></div>
+    <div class="form-row"><input id="m_league" placeholder="Lig (Süper Lig / Şampiyonlar Ligi)"></div>
+    <div class="form-row"><input id="m_date" placeholder="Tarih (DD.MM.YYYY)"></div>
+    <div class="form-row"><input id="m_fps" placeholder="Kalite (4K 60FPS)"></div>
+    <div class="form-row"><input id="m_cover" placeholder="Cover URL (thumbnail)"></div>
+    <div class="form-row"><input id="m_link" placeholder="İndirme/izleme linki (drive/başka)"></div>
+    <div class="form-row"><input id="m_preview" placeholder="Opsiyonel: küçük preview video URL (mp4)"></div>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button class="btn" onclick="closeAdmin()">İptal</button>
+      <button class="btn primary" onclick="addMatch()">Ekle</button>
+    </div>
+    <div class="small" style="margin-top:10px">Not: Admin ile eklenen maçlar `localStorage.matches` içinde saklanır.</div>
+  </div>
 </div>
 
 <script>
@@ -153,93 +157,130 @@ const storedKey = localStorage.getItem('mexy_archive_access');
 const validKeys = ["Mexy1905@","Zeus1967@","NX7-PL8@2","G4L-TR9#1","VIP-MX21$","ARCHV-88!*","MXY-2025-OK","TRS!3492","BLUE-7X!90","KEY-9Zq@4","gs"];
 if(!storedKey || !validKeys.includes(storedKey)){ window.location.href = 'login.html'; }
 
-/* ---------- DATA LOADING ---------- */
-/* matches are stored in localStorage under key 'matches'. If not present, start empty.
-   When you send me the full list I can either:
-     - give you a populated index.html (hardcoded matches array), or
-     - you can paste JSON into browser console: localStorage.setItem('matches', JSON.stringify(ARRAY));
-*/
+// Placeholder cover for broken images
+const PLACEHOLDER_COVER = '//i.imgur.com/GzQWl1i.png'; 
+
+/* ---------- HARDCODED MATCHES LIST (All matches provided so far) ---------- */
+const HARDCODED_MATCHES = [
+    // --- Galatasaray Maçları ---
+    { team: "Galatasaray", title: "Galatasaray - Manchester United", date: "03.10.2023", league: "Şampiyonlar Ligi", fps: "4K 60FPS", cover: "https://i.imgur.com/4ZQZb0y.jpeg", link: "https://drive.google.com/file/d/GS-MU-LINK" },
+    { team: "Galatasaray", title: "Kocaelispor 1 - 0 Galatasaray", date: "09.11.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/nYPi6k_cWpTpXGiF_768x432.jpg", link: "https://drive.google.com/file/d/KOC-GS-LINK" },
+    { team: "Galatasaray", title: "Galatasaray 3 - 0 Karagümrük", date: "15.08.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/C2soc-GmHyzodYnH_768x432.jpg", link: "https://drive.google.com/file/d/GS-KGK-LINK" },
+    { team: "Galatasaray", title: "Galatasaray 3 - 1 Konyaspor", date: "22.09.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/OM1L4VsIUzIjP4tG_768x432.jpg", link: "https://drive.google.com/file/d/GS-KON-LINK" },
+
+    // --- Trabzonspor Maçları ---
+    { team: "Trabzonspor", title: "Trabzonspor 1 - 0 Kocaelispor", date: "11.08.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/CjzD_10A0Udps5Sl_768x432.jpg", link: "https://drive.google.com/file/d/1aY2uTVfVDlPIg1suzfQxwFXxQr2GlHEq/view?usp=sharing" },
+    { team: "Trabzonspor", title: "Kasımpaşa 0 - 1 Trabzonspor", date: "18.08.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/6uiq46BDPXPd_zmv_768x432.jpg", link: "https://drive.google.com/file/d/1SBzlZzrkFBF19SYAl0fDrpy7IHT2JJ5E/view?usp=sharing" },
+    { team: "Trabzonspor", title: "Trabzonspor 1 - 1 Samsunspor", date: "31.08.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/ZPMkSyRKy1KzaFYM_768x432.jpg", link: "https://drive.google.com/file/d/1CgETGCUCSOTCFNIZ35oH7WlA8yd5nF8m/view?usp=sharing" },
+    { team: "Trabzonspor", title: "Trabzonspor 1 - 0 Antalyaspor", date: "24.08.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/1fS43vggPYNfr1Js_768x432.jpg", link: "https://drive.google.com/file/d/1ESLQ_cvTyZWnm8kWnz7Bdi-13TjCkAcr/view?usp=sharing" },
+    { team: "Trabzonspor", title: "Trabzonspor 1 - 1 Gaziantep FK", date: "20.09.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/sr1sprwDV0hK_HM2_768x432.jpg", link: "https://drive.google.com/file/d/1MsKfgnEunboUikWnxYoeF6tNOAAARmJ7/view?usp=sharing" },
+    { team: "Trabzonspor", title: "Trabzonspor 1 - 1 Alanyaspor", date: "08.11.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/9vHC2UIVjUTbrnyz_768x432.jpg", link: "https://drive.google.com/file/d/1OsAEiHCh-AmCZovafTQ9heQBVrzQQDsB/view?usp=sharing" },
+    { team: "Trabzonspor", title: "Trabzonspor 2 - 0 Eyüpspor", date: "25.10.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/FCWe8NGUVRtwZFHV_768x432.jpg", link: "https://drive.google.com/file/d/1uaeiHELW8a51ZvXKmQRtgv96_o6W-IoG/view?usp=sharing" },
+    { team: "Trabzonspor", title: "Rizespor 1 - 2 Trabzonspor", date: "18.10.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/drtrvziJ0tzBUt9A_768x432.jpg", link: "https://drive.google.com/file/d/1_LUIZ7AdbCoMMwl07gYUeOoqvsBFM7tg/view?usp=sharing" },
+    { team: "Trabzonspor", title: "Karagümrük 3 - 4 Trabzonspor", date: "27.09.2025", league: "Süper Lig", fps: "1080p 60FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/bOn973T0WJVoxkPK_768x432.jpg", link: "https://drive.google.com/file/d/18HuEc7S-2svfW3QMFyAWCyIH6krZvhPc/view?usp=sharing" },
+    { team: "Trabzonspor", title: "Trabzonspor 1 - 5 Galatasaray", date: "Belirtilmemiş", league: "Süper Lig", fps: "BEİN 4K", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/tgjW7LPuYXNqaC3k_768x432.jpg", link: "https://drive.google.com/file/d/1uJ3cLjveLRVr4JHMLqr-sRiKgCNf-qsM/view?usp=sharing" },
+    
+    // Diğer takımlara ait eski dummy (örnek) maçlar
+    { team: "Fenerbahçe", title: "Fenerbahçe 2 - 2 Beşiktaş", date: "24.11.2025", league: "Süper Lig", fps: "4K 50FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/hLxN91NQSRXM4Ojv_768x432.jpg", link: "#" },
+    { team: "Beşiktaş", title: "Beşiktaş 1 - 0 Trabzonspor", date: "17.11.2025", league: "Süper Lig", fps: "4K 50FPS", cover: "https://ssl.gstatic.com/onebox/media/sports/videos/vita/-3OLulW8luMcZ84N_768x432.jpg", link: "#" },
+];
+
+/* ---------- DATA LOADING & PERSISTENCE ---------- */
 function loadMatches(){
-  const raw = localStorage.getItem('matches');
-  if(!raw) return [];
-  try { return JSON.parse(raw); } catch(e) { console.warn('matches parse error', e); return []; }
+  const raw = localStorage.getItem('matches');
+  if(!raw) {
+        // Eğer localStorage boşsa, hardcoded listeyi kaydet ve geri döndür
+        saveMatches(HARDCODED_MATCHES);
+        return HARDCODED_MATCHES;
+    }
+  try { return JSON.parse(raw); } catch(e) { console.warn('matches parse error', e); return HARDCODED_MATCHES; }
 }
 function saveMatches(arr){
-  localStorage.setItem('matches', JSON.stringify(arr));
+  localStorage.setItem('matches', JSON.stringify(arr));
 }
 
 /* ---------- UI & RENDER ---------- */
-let matches = loadMatches(); // user will supply later; admin can add
+let matches = loadMatches(); 
 const grid = document.getElementById('grid');
 const titleEl = document.getElementById('category-title');
 const emptyEl = document.getElementById('empty');
 
 function renderList(list){
-  grid.innerHTML = '';
-  if(!list || list.length===0){ emptyEl.style.display = 'block'; return; } else emptyEl.style.display = 'none';
-  list.forEach((m, idx)=>{
-    const card = document.createElement('div'); card.className='card';
-    // thumbnail
-    const img = document.createElement('img'); img.className='thumb'; img.src = m.cover || '//i.imgur.com/GzQWl1i.png';
-    img.alt = m.title || 'Maç';
-    card.appendChild(img);
+  grid.innerHTML = '';
+  if(!list || list.length===0){ emptyEl.style.display = 'block'; return; } else emptyEl.style.display = 'none';
+  list.forEach((m, idx)=>{
+    const card = document.createElement('div'); card.className='card';
+    // thumbnail
+    const img = document.createElement('img'); img.className='thumb'; 
+    img.src = m.cover || PLACEHOLDER_COVER; // Use placeholder if cover is null/empty
+    img.onerror = function() { this.src = PLACEHOLDER_COVER; }; // Fallback for broken link
+    img.alt = m.title || 'Maç';
+    card.appendChild(img);
 
-    // preview video (if preview url provided)
-    if(m.preview){
-      const vid = document.createElement('video');
-      vid.className = 'preview-video';
-      vid.src = m.preview;
-      vid.muted = true; vid.loop = true; vid.preload = 'metadata';
-      card.appendChild(vid);
-      // show/hide on hover events below
-    }
+    // preview video (if preview url provided)
+    if(m.preview){
+      const vid = document.createElement('video');
+      vid.className = 'preview-video';
+      vid.src = m.preview;
+      vid.muted = true; vid.loop = true; vid.preload = 'metadata';
+      card.appendChild(vid);
+      // show/hide on hover events below
+    }
 
-    // overlay play
-    const overlay = document.createElement('div'); overlay.className='preview-layer';
-    const play = document.createElement('div'); play.className='play-overlay';
-    play.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
-    overlay.appendChild(play);
-    card.appendChild(overlay);
+    // overlay play
+    const overlay = document.createElement('div'); overlay.className='preview-layer';
+    const play = document.createElement('div'); play.className='play-overlay';
+    play.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+    overlay.appendChild(play);
+    card.appendChild(overlay);
 
-    // body
-    const body = document.createElement('div'); body.className='card-body';
-    const h = document.createElement('div'); h.className='card-title'; h.innerText = m.title || 'Başlıksız';
-    const meta = document.createElement('div'); meta.className='card-meta'; meta.innerText = `${m.league || '-'}  •  ${m.date || '-'}  •  ${m.fps || '-'}`;
-    const a = document.createElement('a'); a.className='download'; a.href = m.link || '#'; a.target = '_blank'; a.innerText = 'İndir / İzle';
+    // body
+    const body = document.createElement('div'); body.className='card-body';
+    const h = document.createElement('div'); h.className='card-title'; h.innerText = m.title || 'Başlıksız';
+    const meta = document.createElement('div'); meta.className='card-meta'; meta.innerText = `${m.league || '-'}  •  ${m.date || '-'}  •  ${m.fps || '-'}`;
+    const a = document.createElement('a'); a.className='download'; a.href = m.link || '#'; a.target = '_blank'; a.innerText = 'İndir / İzle';
 
-    body.appendChild(h); body.appendChild(meta); body.appendChild(a);
-    card.appendChild(body);
+    body.appendChild(h); body.appendChild(meta); body.appendChild(a);
+    card.appendChild(body);
 
-    // hover behavior: if preview video exists, show it on hover; else just show overlay
-    card.addEventListener('mouseenter', ()=>{
-      const v = card.querySelector('video.preview-video');
-      if(v){ v.style.display='block'; v.play().catch(()=>{}); card.querySelector('.thumb').style.opacity='0.0'; }
-      card.querySelector('.play-overlay').style.opacity = 1;
-    });
-    card.addEventListener('mouseleave', ()=>{
-      const v = card.querySelector('video.preview-video');
-      if(v){ v.pause(); v.style.display='none'; card.querySelector('.thumb').style.opacity='1'; }
-      card.querySelector('.play-overlay').style.opacity = 0;
-    });
+    // hover behavior: if preview video exists, show it on hover; else just show overlay
+    card.addEventListener('mouseenter', ()=>{
+      const v = card.querySelector('video.preview-video');
+      if(v){ v.style.display='block'; v.play().catch(()=>{}); card.querySelector('.thumb').style.opacity='0.0'; }
+      card.querySelector('.play-overlay').style.opacity = 1;
+    });
+    card.addEventListener('mouseleave', ()=>{
+      const v = card.querySelector('video.preview-video');
+      if(v){ v.pause(); v.style.display='none'; card.querySelector('.thumb').style.opacity='1'; }
+      card.querySelector('.play-overlay').style.opacity = 0;
+    });
 
-    grid.appendChild(card);
-  });
+    grid.appendChild(card);
+  });
 }
 
 /* ---------- CATEGORY FILTER ---------- */
 function openCategory(team, league, e){
-  if(e) e.preventDefault(), e.stopPropagation();
-  const combined = `${team} · ${league}`;
-  titleEl.innerText = `${team} — ${league}`;
-  // we expect matches to have: team: "Galatasaray" and league: "Şampiyonlar Ligi" (case sensitive-ish)
-  const filtered = matches.filter(m => (m.team === team) && ( (m.league && m.league.includes(league)) || m.category === league ));
-  renderList(filtered);
+  if(e) e.preventDefault(), e.stopPropagation();
+  const combined = `${team} · ${league}`;
+  document.querySelector('.title').innerText = `${team} Maçları`;
+  titleEl.innerText = league;
+  
+  // Aktif menüyü ayarla
+  document.querySelectorAll('.sub a').forEach(a => a.style.backgroundColor = 'transparent');
+  if(e) e.target.style.backgroundColor = '#181818';
+
+  // Filter logic: check both team and if the league string includes the specified league (to catch 'Süper Lig (X.Hafta)' etc.)
+  const filtered = matches.filter(m => (m.team === team) && (m.league && m.league.includes(league)));
+  renderList(filtered);
 }
 
 /* ---------- INITIAL DEFAULT ---------- */
 function goHome(){
-  // default: Galatasaray Şampiyonlar Ligi
-  openCategory('Galatasaray','Şampiyonlar Ligi');
+  // default: Galatasaray Süper Lig
+  const defaultTeamEl = document.querySelector('.team');
+  defaultTeamEl.classList.add('open');
+  openCategory('Galatasaray','Süper Lig', null);
 }
 
 /* ---------- SIDEBAR UTILS ---------- */
@@ -251,36 +292,35 @@ function openAdmin(){ modal.classList.add('open'); }
 function closeAdmin(){ modal.classList.remove('open'); }
 
 function addMatch(){
-  const m_team = document.getElementById('m_team').value.trim();
-  const m_title = document.getElementById('m_title').value.trim();
-  const m_league = document.getElementById('m_league').value.trim();
-  const m_date = document.getElementById('m_date').value.trim();
-  const m_fps = document.getElementById('m_fps').value.trim();
-  const m_cover = document.getElementById('m_cover').value.trim();
-  const m_link = document.getElementById('m_link').value.trim();
-  const m_preview = document.getElementById('m_preview').value.trim();
+  const m_team = document.getElementById('m_team').value.trim();
+  const m_title = document.getElementById('m_title').value.trim();
+  const m_league = document.getElementById('m_league').value.trim();
+  const m_date = document.getElementById('m_date').value.trim();
+  const m_fps = document.getElementById('m_fps').value.trim();
+  const m_cover = document.getElementById('m_cover').value.trim();
+  const m_link = document.getElementById('m_link').value.trim();
+  const m_preview = document.getElementById('m_preview').value.trim();
 
-  if(!m_team || !m_title){ alert('Takım ve başlık gerekli'); return; }
+  if(!m_team || !m_title){ alert('Takım ve başlık gerekli'); return; }
 
-  const item = { team: m_team, title: m_title, league: m_league, date: m_date, fps: m_fps, cover: m_cover, link: m_link, preview: m_preview };
-  matches.unshift(item);
-  saveMatches(matches);
-  closeAdmin();
-  goHome(); // refresh default view (you can change)
+  const item = { team: m_team, title: m_title, league: m_league, date: m_date, fps: m_fps, cover: m_cover, link: m_link, preview: m_preview };
+  matches.unshift(item); // En üste ekle
+  saveMatches(matches); // Local Storage'a kaydet
+  closeAdmin();
+  goHome(); // Default görünüme dön
 }
 
 /* ---------- LOGOUT ---------- */
 function logout(){ localStorage.removeItem('mexy_archive_access'); window.location.href = 'login.html'; }
 
 /* ---------- BOOT ---------- */
-renderList([]); // initially empty grid (will fill below)
-setTimeout(()=>{ // small delay to allow load
-  // If there are saved matches, render default cat; else show empty and wait admin or your import
-  matches = loadMatches();
-  if(matches.length>0) goHome();
-  else { titleEl.innerText = 'Henüz maç yok — admin ile ekle veya bana liste gönder'; emptyEl.style.display='block'; }
+renderList([]); 
+
+// Küçük bir gecikme ile yükleme işlemini başlat
+setTimeout(()=>{ 
+  matches = loadMatches();
+  goHome(); // Varsayılan görünümü yükle (Galatasaray - Süper Lig)
 },150);
 </script>
 </body>
 </html>
-
