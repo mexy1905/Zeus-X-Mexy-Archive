@@ -5,101 +5,170 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maç Arşivi</title>
 <style>
-  body { font-family: Arial, sans-serif; background:#121212; color:#fff; margin:0; padding:0; }
-  .team { background:#1e1e1e; padding:10px 20px; cursor:pointer; }
-  .category { padding-left:20px; cursor:pointer; background:#2a2a2a; margin:2px 0; }
-  .matches { display:flex; flex-wrap:wrap; padding:10px; gap:10px; display:none; }
-  .match-card { background:#222; border-radius:10px; overflow:hidden; width:300px; }
-  .match-card img { width:100%; height:170px; object-fit:cover; }
-  .match-info { padding:10px; }
-  .match-info p { margin:5px 0; font-size:14px; }
-  .match-link { display:inline-block; margin-top:5px; padding:5px 10px; background:#ffcc00; color:#000; text-decoration:none; border-radius:5px; }
+    body { font-family: Arial, sans-serif; background: #111; color: #fff; margin:0; }
+    header { background:#222; padding: 10px; text-align: center; font-size: 24px; }
+    nav { width: 220px; background:#1c1c1c; position: fixed; top:0; bottom:0; overflow-y:auto; padding-top:10px; }
+    nav a { display:block; padding:10px; color:#fff; text-decoration:none; }
+    nav a:hover { background:#333; }
+    .submenu { padding-left:15px; display:none; }
+    .submenu a { padding:5px 10px; }
+    main { margin-left:230px; padding:20px; }
+    .match { background:#222; margin-bottom:15px; padding:10px; border-radius:8px; display:flex; align-items:center; }
+    .match img { width: 160px; height:90px; object-fit:cover; border-radius:5px; margin-right:10px; }
+    .match div { flex:1; }
+    .match a { color:#00f; text-decoration:none; }
+    .match a:hover { text-decoration:underline; }
+    .toggle { cursor:pointer; user-select:none; }
 </style>
 </head>
 <body>
 
-<div class="team" onclick="toggleCategory('gs')">Galatasaray ▸</div>
-<div class="category" onclick="toggleMatches('gs-super')">Süper Lig</div>
-<div class="matches" id="gs-super"></div>
+<header>Maç Arşivi</header>
 
-<div class="team" onclick="toggleCategory('fb')">Fenerbahçe ▸</div>
-<div class="category" onclick="toggleMatches('fb-super')">Süper Lig</div>
-<div class="matches" id="fb-super"></div>
+<nav>
+  <a class="toggle">Galatasaray ▸</a>
+  <div class="submenu">
+    <a href="#gs-sampiyonlar">Şampiyonlar Ligi</a>
+    <a href="#gs-superlig">Süper Lig</a>
+    <a href="#gs-avrupa">Avrupa Ligi</a>
+    <a href="#gs-turkiye">Türkiye Kupası</a>
+    <a href="#gs-hazirlik">Hazırlık Maçları</a>
+  </div>
+  <a class="toggle">Fenerbahçe ▸</a>
+  <div class="submenu">
+    <a href="#fb-sampiyonlar">Şampiyonlar Ligi</a>
+    <a href="#fb-superlig">Süper Lig</a>
+    <a href="#fb-avrupa">Avrupa Ligi</a>
+    <a href="#fb-turkiye">Türkiye Kupası</a>
+    <a href="#fb-hazirlik">Hazırlık Maçları</a>
+  </div>
+  <a class="toggle">Beşiktaş ▸</a>
+  <div class="submenu">
+    <a href="#bjk-sampiyonlar">Şampiyonlar Ligi</a>
+    <a href="#bjk-superlig">Süper Lig</a>
+    <a href="#bjk-avrupa">Avrupa Ligi</a>
+    <a href="#bjk-turkiye">Türkiye Kupası</a>
+    <a href="#bjk-hazirlik">Hazırlık Maçları</a>
+  </div>
+</nav>
 
-<div class="team" onclick="toggleCategory('bjk')">Beşiktaş ▸</div>
-<div class="category" onclick="toggleMatches('bjk-super')">Süper Lig</div>
-<div class="matches" id="bjk-super"></div>
+<main>
+
+<h2 id="gs-superlig">Galatasaray - Süper Lig</h2>
+
+<!-- Galatasaray Maçları (Süper Lig) -->
+<div class="match">
+    <img src="https://ssl.gstatic.com/onebox/media/sports/videos/vita/hLxN91NQSRXM4Ojv_768x432.jpg" alt="Gaziantep vs Galatasaray">
+    <div>
+        <strong>Gaziantep FK vs Galatasaray (0-3)</strong><br>
+        Tarih: 08.08.2025 | Kalite: 720p | FPS: 25 | <a href="https://drive.google.com/file/d/1EBxegSf02_LLt0ElxMTAhjaUQ_2w3NUS/view?usp=sharing" target="_blank">İzle</a>
+    </div>
+</div>
+
+<div class="match">
+    <img src="https://ssl.gstatic.com/onebox/media/sports/videos/vita/C2soc-GmHyzodYnH_768x432.jpg" alt="Galatasaray vs Karagümrük">
+    <div>
+        <strong>Galatasaray vs Karagümrük (3-0)</strong><br>
+        Tarih: 15.08.2025 | Kalite: 720p | FPS: 25 | <a href="https://drive.google.com/file/d/1MhvDIMRIQKIeRIMSqHnvwa--EmXctbXx/view?usp=sharing" target="_blank">İzle</a>
+    </div>
+</div>
+
+<div class="match">
+    <img src="https://ssl.gstatic.com/onebox/media/sports/videos/vita/OM1L4VsIUzIjP4tG_768x432.jpg" alt="Kayserispor vs Galatasaray">
+    <div>
+        <strong>Kayserispor vs Galatasaray (0-4) BEİN 4K</strong><br>
+        Tarih: 24.08.2025 | Kalite: 4K | FPS: 50 | <a href="https://drive.google.com/file/d/1e3F_T7E5T2J8Zh0MXS2-o5Ilssi2uya1/view?usp=sharing" target="_blank">İzle</a>
+    </div>
+</div>
+
+<div class="match">
+    <img src="https://ssl.gstatic.com/onebox/media/sports/videos/vita/-3OLulW8luMcZ84N_768x432.jpg" alt="Galatasaray vs Rizespor">
+    <div>
+        <strong>Galatasaray vs Rizespor (3-1)</strong><br>
+        Tarih: 30.08.2025 | Kalite: 720p | FPS: 25 | <a href="https://drive.google.com/file/d/1yPWYS_teETQYCaF5vlyP43mEd3KB57K9/view?usp=sharing" target="_blank">İzle</a>
+    </div>
+</div>
+
+<div class="match">
+    <img src="https://ssl.gstatic.com/onebox/media/sports/videos/vita/ZZwUVvfHCkBnrQMB_768x432.jpg" alt="Eyüpspor vs Galatasaray">
+    <div>
+        <strong>Eyüpspor vs Galatasaray (0-2)</strong><br>
+        Tarih: 13.09.2025 | Kalite: 720p | FPS: 25 | <a href="https://drive.google.com/file/d/16JFBuZ3mhdsoatFcgZrvU4PwHvQTIlIX/view?usp=sharing" target="_blank">İzle</a>
+    </div>
+</div>
+
+<div class="match">
+    <img src="https://ssl.gstatic.com/onebox/media/sports/videos/vita/3zD5YXlh099rPclL_768x432.jpg" alt="Galatasaray vs Konyaspor">
+    <div>
+        <strong>Galatasaray vs Konyaspor (3-1)</strong><br>
+        Tarih: 22.09.2025 | Kalite: 720p | FPS: 25 | <a href="https://drive.google.com/file/d/1j94TIN2Lq66QF2kc57Lrj2yrhy-tNheF/view?usp=sharing" target="_blank">İzle</a>
+    </div>
+</div>
+
+<div class="match">
+    <img src="https://ssl.gstatic.com/onebox/media/sports/videos/vita/LUmuwIKI6Xon1K2Z_768x432.jpg" alt="Alanyaspor vs Galatasaray">
+    <div>
+        <strong>Alanyaspor vs Galatasaray (0-1)</strong><br>
+        Tarih: 26.09.2025 | Kalite: 720p | FPS: 25 | <a href="https://drive.google.com/file/d/1JbiCOhWj5Y0G1Ei8NNgHtNzfcbvbuJTj/view?usp=sharing" target="_blank">İzle</a>
+    </div>
+</div>
+
+<div class="match">
+    <img src="https://ssl.gstatic.com/onebox/media/sports/videos/vita/6_m_TeKG0giBW1Ji_768x432.jpg" alt="Galatasaray vs Beşiktaş">
+    <div>
+        <strong>Galatasaray vs Beşiktaş (1-1)</strong><br>
+        Tarih: 04.10.2025 | Kalite: 720p | FPS: 25 | <a href="https://drive.google.com/file/d/1WI05ad1NUHPGbHEi0_FvePWfecs6Vq1L/view?usp=sharing" target="_blank">İzle</a>
+    </div>
+</div>
+
+<div class="match">
+    <img src="https://ssl.gstatic.com/onebox/media/sports/videos/vita/s-4EU_H2twV5-JXR_768x432.jpg" alt="Başakşehir vs Galatasaray">
+    <div>
+        <strong>Başakşehir vs Galatasaray (1-2)</strong><br>
+        Tarih: 18.10.2025 | Kalite: 720p | FPS: 25 | <a href="https://drive.google.com/file/d/1K_ptltnnCwujMz2BNhR6nhO8XudE1zZu/view?usp=sharing" target="_blank">İzle</a>
+    </div>
+</div>
+
+<div class="match">
+    <img src="https://ssl.gstatic.com/onebox/media/sports/videos/vita/n1pCwaf60bDKKPUs_768x432.jpg" alt="Galatasaray vs Göztepe">
+    <div>
+        <strong>Galatasaray vs Göztepe (3-1)</strong><br>
+        Tarih: 26.10.2025 | Kalite: 720p | FPS: 25 | <a href="https://drive.google.com/file/d/1e8SbC-SXy_q9EnPR2re94swyXtIeiSB2/view?usp=sharing" target="_blank">İzle</a>
+    </div>
+</div>
+
+<div class="match">
+    <img src="https://ssl.gstatic.com/onebox/media/sports/videos/vita/ttVAh1Uu-W57FR48_768x432.jpg" alt="Galatasaray vs Trabzonspor">
+    <div>
+        <strong>Galatasaray vs Trabzonspor (0-0) BEİN 4K</strong><br>
+        Tarih: 01.11.2025 | Kalite: 4K | FPS: 50 | <a href="https://drive.google.com/file/d/1HiRZRR0oDbkc-pcoj79HAzVN33fgjcNC/view?usp=sharing" target="_blank">İzle</a>
+    </div>
+</div>
+
+<div class="match">
+    <img src="https://ssl.gstatic.com/onebox/media/sports/videos/vita/nYPi6k_cWpTpXGiF_768x432.jpg" alt="Kocaeli vs Galatasaray">
+    <div>
+        <strong>Kocaeli vs Galatasaray (1-0)</strong><br>
+        Tarih: 09.11.2025 | Kalite: 720p | FPS: 25 | <a href="https://drive.google.com/file/d/1GN2rNos9JAw66OiCMarvpDTuWesj7USI/view?usp=sharing" target="_blank">İzle</a>
+    </div>
+</div>
+
+<!-- Trabzonspor Maçları Süper Lig -->
+<h2 id="ts-superlig">Trabzonspor - Süper Lig</h2>
+<!-- Trabzonspor maçlarını buraya aynı formatta ekleyeceğiz -->
+
+<!-- Fenerbahçe ve Beşiktaş bölümleri de aynı şekilde eklenebilir -->
 
 <script>
-const DEFAULT_QUALITY = "720p";
-const DEFAULT_FPS = "25FPS";
-const PREMIUM_QUALITY = "4K";
-const PREMIUM_FPS = "50FPS";
-
-const matches = [
-  // ================== TRABZONSPOR MAÇLARI ==================
-  { team_1: "Trabzonspor", team_2: "Kocaelispor", title:"Trabzonspor vs Kocaelispor (1-0)", date:"11.08.2025", league:"Süper Lig", quality:DEFAULT_QUALITY, fps:DEFAULT_FPS, link:"https://drive.google.com/file/d/1aY2uTVfVDlPIg1suzfQxwFXxQr2GlHEq/view?usp=sharing", cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/CjzD_10A0Udps5Sl_768x432.jpg"},
-  { team_1: "Kasımpaşa", team_2: "Trabzonspor", title:"Kasımpaşa vs Trabzonspor (0-1)", date:"18.08.2025", league:"Süper Lig", quality:DEFAULT_QUALITY, fps:DEFAULT_FPS, link:"https://drive.google.com/file/d/1SBzlZzrkFBF19SYAl0fDrpy7IHT2JJ5E/view?usp=sharing", cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/6uiq46BDPXPd_zmv_768x432.jpg"},
-  { team_1: "Trabzonspor", team_2: "Samsunspor", title:"Trabzonspor vs Samsunspor (1-1)", date:"31.08.2025", league:"Süper Lig", quality:DEFAULT_QUALITY, fps:DEFAULT_FPS, link:"https://drive.google.com/file/d/1CgETGCUCSOTCFNIZ35oH7WlA8yd5nF8m/view?usp=sharing", cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/ZPMkSyRKy1KzaFYM_768x432.jpg"},
-  { team_1: "Trabzonspor", team_2: "Antalyaspor", title:"Trabzonspor vs Antalyaspor (1-0)", date:"24.08.2025", league:"Süper Lig", quality:DEFAULT_QUALITY, fps:DEFAULT_FPS, link:"https://drive.google.com/file/d/1ESLQ_cvTyZWnm8kWnz7Bdi-13TjCkAcr/view?usp=sharing", cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/1fS43vggPYNfr1Js_768x432.jpg"},
-  { team_1: "Trabzonspor", team_2: "Gaziantep FK", title:"Trabzonspor vs Gaziantep FK (1-1)", date:"20.09.2025", league:"Süper Lig", quality:DEFAULT_QUALITY, fps:DEFAULT_FPS, link:"https://drive.google.com/file/d/1MsKfgnEunboUikWnxYoeF6tNOAAARmJ7/view?usp=sharing", cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/sr1sprwDV0hK_HM2_768x432.jpg"},
-  { team_1: "Trabzonspor", team_2: "Alanyaspor", title:"Trabzonspor vs Alanyaspor (1-1)", date:"08.11.2025", league:"Süper Lig", quality:DEFAULT_QUALITY, fps:DEFAULT_FPS, link:"https://drive.google.com/file/d/1OsAEiHCh-AmCZovafTQ9heQBVrzQQDsB/view?usp=sharing", cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/9vHC2UIVjUTbrnyz_768x432.jpg"},
-  { team_1: "Trabzonspor", team_2: "Eyüpspor", title:"Trabzonspor vs Eyüpspor (2-0)", date:"25.10.2025", league:"Süper Lig", quality:DEFAULT_QUALITY, fps:DEFAULT_FPS, link:"https://drive.google.com/file/d/1uaeiHELW8a51ZvXKmQRtgv96_o6W-IoG/view?usp=sharing", cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/FCWe8NGUVRtwZFHV_768x432.jpg"},
-  { team_1: "Rizespor", team_2: "Trabzonspor", title:"Rizespor vs Trabzonspor (1-2)", date:"18.10.2025", league:"Süper Lig", quality:DEFAULT_QUALITY, fps:DEFAULT_FPS, link:"https://drive.google.com/file/d/1_LUIZ7AdbCoMMwl07gYUeOoqvsBFM7tg/view?usp=sharing", cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/drtrvziJ0tzBUt9A_768x432.jpg"},
-  { team_1: "Karagümrük", team_2: "Trabzonspor", title:"Karagümrük vs Trabzonspor (3-4)", date:"27.09.2025", league:"Süper Lig", quality:DEFAULT_QUALITY, fps:DEFAULT_FPS, link:"https://drive.google.com/file/d/18HuEc7S-2svfW3QMFyAWCyIH6krZvhPc/view?usp=sharing", cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/bOn973T0WJVoxkPK_768x432.jpg"},
-  { team_1: "Trabzonspor", team_2: "Galatasaray", title:"Trabzonspor vs Galatasaray (1-5) BEİN 4K", date:"Bilinmiyor", league:"Süper Lig", quality:PREMIUM_QUALITY, fps:PREMIUM_FPS, link:"https://drive.google.com/file/d/1uJ3cLjveLRVr4JHMLqr-sRiKgCNf-qsM/view?usp=sharing", cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/tgjW7LPuYXNqaC3k_768x432.jpg"},
-
-  // ================== GALATASARAY MAÇLARI ==================
-  { team_1: "Gaziantep FK", team_2: "Galatasaray", title:"Gaziantep vs Galatasaray (0-3)", date:"08.08.2025", league:"Süper Lig", quality:DEFAULT_QUALITY, fps:DEFAULT_FPS, link:"https://drive.google.com/file/d/1EBxegSf02_LLt0ElxMTAhjaUQ_2w3NUS/view?usp=sharing", cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/hLxN91NQSRXM4Ojv_768x432.jpg"},
-  { team_1: "Galatasaray", team_2: "Karagümrük", title:"Galatasaray vs Karagümrük (3-0)", date:"15.08.2025", league:"Süper Lig", quality:DEFAULT_QUALITY, fps:DEFAULT_FPS, link:"https://drive.google.com/file/d/1MhvDIMRIQKIeRIMSqHnvwa--EmXctbXx/view?usp=sharing", cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/C2soc-GmHyzodYnH_768x432.jpg"},
-  { team_1: "Kayserispor", team_2: "Galatasaray", title:"Kayserispor vs Galatasaray (0-4) BEİN 4K", date:"24.08.2025", league:"Süper Lig", quality:PREMIUM_QUALITY, fps:PREMIUM_FPS, link:"https://drive.google.com/file/d/1e3F_T7E5T2J8Zh0MXS2-o5Ilssi2uya1/view?usp=sharing", cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/OM1L4VsIUzIjP4tG_768x432.jpg"},
-  { team_1: "Galatasaray", team_2: "Rizespor", title:"Galatasaray vs Rizespor (3-1)", date:"30.08.2025", league:"Süper Lig", quality:DEFAULT_QUALITY, fps:DEFAULT_FPS, link:"https://drive.google.com/file/d/1yPWYS_teETQYCaF5vlyP43mEd3KB57K9/view?usp=sharing", cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/-3OLulW8luMcZ84N_768x432.jpg"},
-  { team_1: "Eyüpspor", team_2: "Galatasaray", title:"Eyüpspor vs Galatasaray (0-2)", date:"13.09.2025", league:"Süper Lig", quality:DEFAULT_QUALITY, fps:DEFAULT_FPS, link:"https://drive.google.com/file/d/16JFBuZ3mhdsoatFcgZrvU4PwHvQTIlIX/view?usp=sharing", cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/ZZwUVvfHCkBnrQMB_768x432.jpg"},
-  { team_1: "Galatasaray", team_2: "Konyaspor", title:"Galatasaray vs Konyaspor (3-1)", date:"22.09.2025", league:"Süper Lig", quality:DEFAULT_QUALITY, fps:DEFAULT_FPS, link:"https://drive.google.com/file/d/1j94TIN2Lq66QF2kc57Lrj2yrhy-tNheF/view?usp=sharing", cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/3zD5YXlh099rPclL_768x432.jpg"},
-  { team_1: "Alanyaspor", team_2: "Galatasaray", title:"Alanyaspor vs Galatasaray (0-1)", date:"26.09.2025", league:"Süper Lig", quality:DEFAULT_QUALITY, fps:DEFAULT_FPS, link:"https://drive.google.com/file/d/1JbiCOhWj5Y0G1Ei8NNgHtNzfcbvbuJTj/view?usp=sharing", cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/LUmuwIKI6Xon1K2Z_768x432.jpg"},
-  { team_1: "Galatasaray", team_2: "Beşiktaş", title:"Galatasaray vs Beşiktaş (1-1)", date:"04.10.2025", league:"Süper Lig", quality:DEFAULT_QUALITY, fps:DEFAULT_FPS, link:"https://drive.google.com/file/d/1WI05ad1NUHPGbHEi0_FvePWfecs6Vq1L/view?usp=sharing", cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/6_m_TeKG0giBW1Ji_768x432.jpg"},
-  { team_1: "Başakşehir", team_2: "Galatasaray", title:"Başakşehir vs Galatasaray (1-2)", date:"18.10.2025", league:"Süper Lig", quality:DEFAULT_QUALITY, fps:DEFAULT_FPS, link:"https://drive.google.com/file/d/1K_ptltnnCwujMz2BNhR6nhO8XudE1zZu/view?usp=sharing", cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/s-4EU_H2twV5-JXR_768x432.jpg"},
-  { team_1: "Galatasaray", team_2: "Göztepe", title:"Galatasaray vs Göztepe (3-1)", date:"26.10.2025", league:"Süper Lig", quality:DEFAULT_QUALITY, fps:DEFAULT_FPS, link:"https://drive.google.com/file/d/1e8SbC-SXy_q9EnPR2re94swyXtIeiSB2/view?usp=sharing", cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/n1pCwaf60bDKKPUs_768x432.jpg"},
-  { team_1: "Galatasaray", team_2: "Trabzonspor", title:"Galatasaray vs Trabzonspor (0-0) BEİN 4K", date:"01.11.2025", league:"Süper Lig", quality:PREMIUM_QUALITY, fps:PREMIUM_FPS, link:"https://drive.google.com/file/d/1HiRZRR0oDbkc-pcoj79HAzVN33fgjcNC/view?usp=sharing", cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/ttVAh1Uu-W57FR48_768x432.jpg"},
-  { team_1: "Kocaeli", team_2: "Galatasaray", title:"Kocaeli vs Galatasaray (1-0)", date:"09.11.2025", league:"Süper Lig", quality:DEFAULT_QUALITY, fps:DEFAULT_FPS, link:"https://drive.google.com/file/d/1GN2rNos9JAw66OiCMarvpDTuWesj7USI/view?usp=sharing", cover:"https://ssl.gstatic.com/onebox/media/sports/videos/vita/nYPi6k_cWpTpXGiF_768x432.jpg"}
-];
-
-function toggleMatches(id){
-  const el = document.getElementById(id);
-  el.style.display = el.style.display === 'flex' ? 'none' : 'flex';
-}
-
-function toggleCategory(teamId){
-  // Burada istersen takımı tıklayınca tüm alt kategoriler açılabilir
-}
-
-// Maçları Süper Lig kategorisine ekleme
-matches.forEach(match => {
-  if(match.league === "Süper Lig"){
-    if(match.team_1.includes("Galatasaray") || match.team_2.includes("Galatasaray")){
-      document.getElementById('gs-super').innerHTML += createCard(match);
-    }
-    if(match.team_1.includes("Fenerbahçe") || match.team_2.includes("Fenerbahçe")){
-      document.getElementById('fb-super').innerHTML += createCard(match);
-    }
-    if(match.team_1.includes("Beşiktaş") || match.team_2.includes("Beşiktaş")){
-      document.getElementById('bjk-super').innerHTML += createCard(match);
-    }
-  }
-});
-
-function createCard(match){
-  return `<div class="match-card">
-    <img src="${match.cover}" alt="${match.title}">
-    <div class="match-info">
-      <p><strong>${match.title}</strong></p>
-      <p>Tarih: ${match.date}</p>
-      <p>Lig: ${match.league}</p>
-      <p>Kalite: ${match.quality} | FPS: ${match.fps}</p>
-      <a class="match-link" href="${match.link}" target="_blank">İzle</a>
-    </div>
-  </div>`;
-}
+    const toggles = document.querySelectorAll('.toggle');
+    toggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+            const submenu = toggle.nextElementSibling;
+            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        });
+    });
 </script>
+
+</main>
 </body>
 </html>
